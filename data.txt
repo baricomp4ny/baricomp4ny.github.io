@@ -1,0 +1,48 @@
+DATA PORTOFOLIO - MUHAMMAD FIKRI BARI
+
+== IDENTITAS ==
+Nama lengkap   : Muhammad Fikri Bari
+Peran          : UI/UX Designer & Web Developer
+Lokasi         : Kota Bogor, Indonesia
+Tentang saya   : Mahasiswa S1 Sistem Informasi di Universitas Bina Sarana Informatika yang senang merancang sistem dari sisi pengguna dan data. Terbiasa memulai dari riset dan Design Thinking, merancang antarmuka di Figma, lalu membangun database MySQL di baliknya. Sedang mencari kesempatan magang untuk menerapkan kemampuan ini di proyek nyata.
+Tagline singkat: Merancang tampilan yang mudah dipakai, dan sistem yang rapi di baliknya.
+
+== STATISTIK ==
+4 : Proyek tim
+5 : Semester Sistem Informasi
+2 : Bahasa (Indonesia, Inggris)
+
+== PENDIDIKAN ==
+Universitas Bina Sarana Informatika | S1 Sistem Informasi, Fakultas Teknik dan Informatika | Sep 2024 - Sekarang
+MAN 1 Kota Bogor | Jurusan IPS | 2021 - 2024
+
+== PROYEK (urut dari yang paling kuat) ==
+Proyek 1 : Edu-Harmony | Website edukasi dengan tes kepribadian MBTI, rekomendasi mode belajar, forum diskusi, dashboard pengguna, dan manajemen tugas | Peran: desain UI (Figma), database MySQL & CRUD, dokumentasi sistem | Sep 2025 - Jan 2026 | Demo: menyusul | GitHub: menyusul
+Proyek 2 : Velocity RentCar | Studi kasus UI/UX aplikasi rental mobil: riset pengguna, persona, user flow, wireframe, prototype, dan usability testing | Tools: Figma, Design Thinking | Mar 2025 - Jul 2025 | Prototype Figma: menyusul
+Proyek 3 : Toko Online | Website toko online dengan halaman produk, keranjang belanja, dan pemesanan | Peran: desain tampilan, database & data produk | Mar 2026 - Sekarang | Link: menyusul
+Proyek 4 : Bari Coffee | Website pemesanan kafe dengan menu interaktif dan pesanan via WhatsApp (Laravel) | Proyek akhir mata kuliah Digital Kreatif | 2026 | Link: menyusul
+
+== ALUR KERJA (bagian Work Process) ==
+1. Empathize - memahami pengguna dan masalahnya
+2. Define    - merumuskan kebutuhan sistem
+3. Design    - wireframe & prototype di Figma
+4. Build     - database MySQL dan implementasi CRUD
+5. Test      - usability testing dan perbaikan
+
+== SKILL ==
+Desain     : Figma (wireframing, prototyping, UI components), Canva (social media design, infografis, branding kit)
+Data       : MySQL (database design, SQL query, CRUD), Microsoft Excel
+Web        : HTML, CSS, Laravel (sedang belajar)
+Dokumen    : Microsoft Word, PowerPoint, dokumentasi & analisis sistem
+Soft skill : Public speaking, copywriting, komunikasi, kepemimpinan, kerja tim, problem solving, time management, adaptability
+
+== PENGALAMAN ORGANISASI ==
+Sekretaris OSIM (Organisasi Siswa Intra Madrasah) | MAN 1 Kota Bogor | Jun 2022 - Jun 2023 | Mengelola surat masuk/keluar dan arsip digital, menyusun proposal, notulen, dan daftar hadir, membuat template surat dan surat edaran dengan Canva
+
+== KONTAK ==
+Email     : muhammadfikribari@gmail.com
+GitHub    : https://github.com/baricomp4ny
+WhatsApp  : +625693227569
+LinkedIn  : menyusul
+Instagram : menyusul
+CV        : assets/cv.pdf

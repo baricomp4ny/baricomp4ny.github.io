@@ -1,0 +1,10 @@
+# Pengaturan lokal Claude Code (pratinjau), tidak dibutuhkan website
+.claude/
+
+# Gambar referensi desain milik orang lain — hanya untuk acuan pribadi
+referensi.png
+
+# File sistem
+Thumbs.db
+desktop.ini
+.DS_Store

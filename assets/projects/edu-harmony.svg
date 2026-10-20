@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="640" height="400"><style>.m-frame{fill:#1b0b0d;stroke:rgba(255,200,200,.14)}.m-bar{fill:#26100f}.m-dot{fill:rgba(255,255,255,.2)}.m-line{fill:rgba(255,255,255,.18)}.m-soft{fill:rgba(255,255,255,.07)}.m-card{fill:#2a1315}.m-red{fill:#d7262e}.m-red-soft{fill:rgba(215,38,46,.32)}.m-wa{fill:#25d366}.m-white{fill:rgba(255,255,255,.9)}.m-wheel{fill:#1b0b0d;stroke:#d7262e;stroke-width:2}.m-ring-bg{fill:none;stroke:rgba(255,255,255,.1);stroke-width:5}.m-ring{fill:none;stroke:#d7262e;stroke-width:5;stroke-linecap:round;stroke-dasharray:56 82}.m-dash{fill:none;stroke:rgba(255,255,255,.28);stroke-dasharray:4 4}.m-flow{fill:none;stroke:#d7262e;stroke-width:2;stroke-dasharray:3 3}.m-steam{fill:none;stroke:rgba(255,255,255,.3);stroke-width:2;stroke-linecap:round}.m-handle{fill:none;stroke:#d7262e;stroke-width:5}</style><defs><radialGradient id="bg" cx="85%" cy="0%" r="120%"><stop offset="0" stop-color="#6b1118"/><stop offset=".6" stop-color="#2b0709"/><stop offset="1" stop-color="#140708"/></radialGradient></defs><rect width="320" height="200" fill="url(#bg)"/><rect class="m-frame" x="44" y="34" width="300" height="190" rx="10"/>
+                <rect class="m-bar" x="45" y="35" width="298" height="19" rx="9"/>
+                <rect class="m-bar" x="45" y="44" width="298" height="10"/>
+                <circle class="m-dot" cx="57" cy="44" r="3"/><circle class="m-dot" cx="67" cy="44" r="3"/><circle class="m-dot" cx="77" cy="44" r="3"/>
+                <rect class="m-soft" x="45" y="54" width="58" height="170"/>
+                <rect class="m-red" x="55" y="68" width="38" height="6" rx="3"/>
+                <rect class="m-line" x="55" y="84" width="30" height="5" rx="2.5"/>
+                <rect class="m-line" x="55" y="98" width="34" height="5" rx="2.5"/>
+                <rect class="m-line" x="55" y="112" width="26" height="5" rx="2.5"/>
+                <rect class="m-line" x="116" y="68" width="92" height="8" rx="4"/>
+                <rect class="m-card" x="116" y="86" width="62" height="46" rx="6"/>
+                <circle class="m-ring-bg" cx="147" cy="109" r="13"/>
+                <circle class="m-ring" cx="147" cy="109" r="13" transform="rotate(-90 147 109)"/>
+                <rect class="m-card" x="186" y="86" width="62" height="46" rx="6"/>
+                <rect class="m-red" x="195" y="96" width="9" height="9" rx="2"/><rect class="m-red-soft" x="208" y="96" width="9" height="9" rx="2"/>
+                <rect class="m-red-soft" x="221" y="96" width="9" height="9" rx="2"/><rect class="m-red" x="234" y="96" width="9" height="9" rx="2"/>
+                <rect class="m-line" x="195" y="114" width="44" height="5" rx="2.5"/>
+                <rect class="m-card" x="256" y="86" width="62" height="46" rx="6"/>
+                <rect class="m-red-soft" x="266" y="112" width="7" height="12" rx="1"/><rect class="m-red-soft" x="277" y="104" width="7" height="20" rx="1"/>
+                <rect class="m-red" x="288" y="96" width="7" height="28" rx="1"/><rect class="m-red-soft" x="299" y="108" width="7" height="16" rx="1"/>
+                <rect class="m-card" x="116" y="142" width="202" height="20" rx="5"/>
+                <rect class="m-red" x="124" y="148" width="8" height="8" rx="2"/><rect class="m-line" x="140" y="149" width="90" height="5" rx="2.5"/>
+                <rect class="m-card" x="116" y="168" width="202" height="20" rx="5"/>
+                <rect class="m-red-soft" x="124" y="174" width="8" height="8" rx="2"/><rect class="m-line" x="140" y="175" width="70" height="5" rx="2.5"/></svg>
