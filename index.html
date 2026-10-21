@@ -22,11 +22,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   <!-- Animasi scroll hanya aktif jika perangkat tidak meminta "kurangi gerakan" -->
   <script>if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion");</script>
-  <script src="data/projects.js" defer></script>
-  <script src="script.js" defer></script>
+  <!-- ?v=... dinaikkan setiap kali style.css/script.js diubah, agar browser tidak memakai versi lama -->
+  <script src="script.js?v=2" defer></script>
   <noscript><style>.hero__img { opacity: 1; }</style></noscript>
 </head>
 <body>

@@ -4,8 +4,23 @@
   "use strict";
 
   /* Proyek Pilihan: kartu dibuat dari data/projects.js (dikelola lewat admin.html).
-     Harus berjalan sebelum efek scroll dipasang agar kartu ikut beranimasi. */
-  renderProjects();
+     File dimuat dengan penanda waktu (?v=...) agar selalu versi terbaru: GitHub Pages menyuruh
+     browser menyimpan file selama 10 menit, sehingga tanpa ini perubahan dari admin baru
+     terlihat belakangan. Kartu harus sudah ada sebelum efek scroll & cahaya kursor dipasang. */
+  var root = document.documentElement;
+  loadProjects(function () {
+    renderProjects();
+    bindCardGlow();
+    if (root.classList.contains("motion")) initScrollEffects();
+  });
+
+  function loadProjects(done) {
+    if (window.PROJECTS) return done();
+    var s = document.createElement("script");
+    s.src = "data/projects.js?v=" + Date.now();
+    s.onload = s.onerror = done;
+    document.head.appendChild(s);
+  }
 
   function renderProjects() {
     var wrap = document.querySelector("[data-projects]");
@@ -147,7 +162,8 @@
   });
 
   /* Kartu proyek: posisi kursor untuk efek cahaya */
-  if (window.matchMedia("(hover: hover)").matches) {
+  function bindCardGlow() {
+    if (!window.matchMedia("(hover: hover)").matches) return;
     document.querySelectorAll(".project").forEach(function (card) {
       card.addEventListener("pointermove", function (e) {
         var r = card.getBoundingClientRect();
@@ -158,8 +174,6 @@
   }
 
   /* Efek scroll — hanya jika <html> punya kelas "motion" (lihat <head>) */
-  var root = document.documentElement;
-  if (root.classList.contains("motion")) initScrollEffects();
 
   function initScrollEffects() {
     /* 1. Elemen muncul saat masuk layar */
