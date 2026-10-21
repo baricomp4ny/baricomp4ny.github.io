@@ -42,7 +42,7 @@ window.PROJECTS = [
       "Midtrans",
       "RajaOngkir API"
     ],
-    "link": "https://github.com/baricomp4ny/tokoonline",
+    "link": "https://baricomp4ny.github.io/tokoonline/",
     "status": "",
     "image": "assets/projects/toko-online.svg"
   },
