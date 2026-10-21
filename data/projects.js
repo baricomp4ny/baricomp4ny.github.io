@@ -34,13 +34,15 @@ window.PROJECTS = [
     "title": "Toko Online",
     "type": "Website e-commerce",
     "period": "Mar 2026 – sekarang",
-    "description": "Halaman produk, keranjang belanja, dan pemesanan.",
+    "description": "Toko online jajanan tradisional: katalog & filter kategori, login Google, keranjang belanja, ongkir RajaOngkir, pembayaran Midtrans, serta halaman admin untuk CRUD produk, kelola pesanan, grafik, dan laporan. Proyek mata kuliah Web Programming III.",
     "role": "desain tampilan, database & data produk",
     "tech": [
-      "UI Design",
-      "Database"
+      "Laravel",
+      "MySQL",
+      "Midtrans",
+      "RajaOngkir API"
     ],
-    "link": "",
+    "link": "https://github.com/baricomp4ny/tokoonline",
     "status": "",
     "image": "assets/projects/toko-online.svg"
   },
