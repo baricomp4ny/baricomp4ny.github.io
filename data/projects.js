@@ -12,6 +12,7 @@ window.PROJECTS = [
       "CRUD"
     ],
     "link": "",
+    "status": "",
     "image": "assets/projects/edu-harmony.svg"
   },
   {
@@ -26,6 +27,7 @@ window.PROJECTS = [
       "Design Thinking"
     ],
     "link": "",
+    "status": "",
     "image": "assets/projects/velocity-rentcar.svg"
   },
   {
@@ -39,6 +41,7 @@ window.PROJECTS = [
       "Database"
     ],
     "link": "",
+    "status": "",
     "image": "assets/projects/toko-online.svg"
   },
   {
@@ -51,7 +54,8 @@ window.PROJECTS = [
       "Laravel",
       "MySQL"
     ],
-    "link": "",
+    "link": "https://baricomp4ny.github.io/bari-coffee/",
+    "status": "",
     "image": "assets/projects/bari-coffee.svg"
   },
   {
