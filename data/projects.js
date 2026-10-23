@@ -26,7 +26,7 @@ window.PROJECTS = [
       "UX Research",
       "Design Thinking"
     ],
-    "link": "",
+    "link": "https://baricomp4ny.github.io/velocity-rentcar/",
     "status": "",
     "image": "assets/projects/velocity-rentcar.svg"
   },
