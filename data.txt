@@ -43,6 +43,6 @@ Sekretaris OSIM (Organisasi Siswa Intra Madrasah) | MAN 1 Kota Bogor | Jun 2022 
 Email     : muhammadfikribari@gmail.com
 GitHub    : https://github.com/baricomp4ny
 WhatsApp  : +625693227569
-LinkedIn  : menyusul
-Instagram : menyusul
+LinkedIn  : https://www.linkedin.com/in/muhammad-fikri-bari-199697366
+Instagram : https://www.instagram.com/bariii.mf/
 CV        : assets/cv.pdf

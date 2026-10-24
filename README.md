@@ -72,9 +72,9 @@ tetapi latarnya akan menutupi sebagian tulisan.
 Tombol "Download CV" mengarah ke `assets/cv.pdf`. Di GitHub Pages, jika file itu
 belum ada, tombol otomatis berubah menjadi "CV segera" (abu-abu) agar tidak ada link mati.
 
-## Menambahkan LinkedIn / Instagram
+## Menambahkan kontak lain
 
-Salin salah satu blok `<li>` di bagian Kontak (misalnya GitHub), lalu ganti
+Salin salah satu blok `<li>` di bagian Kontak (misalnya LinkedIn), lalu ganti
 `href`, label, dan teksnya.
 
 ## Mencoba di komputer
