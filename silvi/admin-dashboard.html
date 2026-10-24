@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-marian-50 font-sans text-marian-950 antialiased">
+        <div x-data="{ sidebar: false }" class="min-h-screen">
+            
+            <div x-show="sidebar" x-transition.opacity @click="sidebar = false"
+                 class="fixed inset-0 z-30 bg-gray-900/50 lg:hidden" style="display: none;"></div>
+
+            
+            <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full'"
+                   class="fixed inset-y-0 left-0 z-40 w-64 transform overflow-y-auto bg-gradient-to-b from-marian-950 via-marian-900 to-marian-700 text-marian-100 transition-transform duration-200 lg:translate-x-0">
+                <div class="flex h-16 items-center gap-2 border-b border-white/10 px-5">
+                    <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain !h-9 !w-9 bg-white/90 p-0.5">
+                    <div class="leading-tight">
+                        <div class="text-sm font-extrabold text-white">Peminjaman Alat</div>
+                        <div class="text-xs text-marian-300">Panel Admin · <a href="index.html" class="hover:text-white">Lihat situs</a></div>
+                    </div>
+                </div>
+
+                <nav class="space-y-1 px-3 py-4 text-sm">
+                                                                        <a href="admin-dashboard.html"
+    aria-current="page"    class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition bg-white text-marian-900 shadow-sm">
+    <span>Dashboard</span>
+    </a>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Data Barang
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-barang.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Jenis Barang</span>
+    </a>
+                                                                            <a href="admin-unit.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Unit &amp; Kondisi</span>
+    </a>
+                                                                            <a href="admin-kategori.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Kategori</span>
+    </a>
+                                                                            <a href="admin-lokasi.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Lokasi</span>
+    </a>
+                                                                            <a href="#demo"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Cetak Label Barcode</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <a href="admin-peminjam.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Data Peminjam</span>
+    </a>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Transaksi
+                                                                                    <span class="rounded-full bg-white px-2 text-xs font-bold text-marian-800">1</span>
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-ajuan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Ajuan Peminjaman</span>
+            <span class="rounded-full px-2 text-xs font-bold bg-white text-marian-800">1</span>
+    </a>
+                                                                            <a href="admin-peminjaman.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Peminjaman Aktif</span>
+    </a>
+                                                                            <a href="admin-jadwal.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Jadwal Pemakaian</span>
+    </a>
+                                                                            <a href="admin-riwayat.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Riwayat Transaksi</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <a href="admin-scan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Scan Barcode</span>
+    </a>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Laporan
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-laporan-pengembalian.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Pengembalian</span>
+    </a>
+                                                                            <a href="admin-laporan-inventaris.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Inventaris</span>
+    </a>
+                                                                            <a href="admin-laporan-keterlambatan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Keterlambatan</span>
+    </a>
+                                                                            <a href="admin-laporan-statistik.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Statistik Pemakaian</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Pengaturan
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-data-admin.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Data Admin</span>
+    </a>
+                                                                            <a href="admin-pengaturan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Aturan Peminjaman</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                            </nav>
+            </aside>
+
+            
+            <div class="lg:pl-64">
+                <header class="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-marian-100 bg-white/90 px-4 backdrop-blur sm:px-6">
+                    <div class="flex items-center gap-3">
+                        <button type="button" @click="sidebar = true" class="rounded-full p-2 text-marian-700 hover:bg-marian-50 lg:hidden" aria-label="Buka menu">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        </button>
+                                                    
+                            <div class="min-w-0 leading-tight">
+                                <div class="font-extrabold text-marian-900">Dashboard</div>
+                                <div class="hidden truncate text-xs text-marian-500 sm:block">Ringkasan inventaris dan transaksi aktif</div>
+                            </div>
+                                            </div>
+
+                    
+                    <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+    <div @click="open = ! open">
+        <button class="flex items-center gap-2 rounded-full text-sm font-semibold text-marian-800 hover:text-marian-950 focus:outline-none">
+                                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-marian-900 to-marian-600 font-bold text-white">
+                                    A
+                                </span>
+                                <span class="hidden sm:inline">Administrator</span>
+                            </button>
+    </div>
+
+    <div x-show="open"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="absolute z-50 mt-2 w-48 rounded-md shadow-lg ltr:origin-top-right rtl:origin-top-left end-0"
+            style="display: none;"
+            @click="open = false">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+            <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo">Profil</a>
+                            <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo">Ganti Password</a>
+                            <form method="POST" action="#demo">
+                                <input type="hidden" name="_token" value="" autocomplete="off">                                <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo" onclick="event.preventDefault(); this.closest('form').submit();">Keluar</a>
+                            </form>
+        </div>
+    </div>
+</div>
+                </header>
+
+                <main class="p-4 sm:p-6">
+                                        <div class="grid grid-cols-2 divide-x divide-y divide-marian-100 overflow-hidden rounded-3xl bg-white shadow-lembut ring-1 ring-marian-100 sm:grid-cols-3 sm:divide-y-0 lg:grid-cols-5">
+                    <a href="admin-ajuan.html" class="p-4 transition hover:bg-marian-50">
+                <div class="text-sm text-marian-500">Ajuan menunggu</div>
+                <div class="mt-1 text-2xl font-semibold text-marian-600">1</div>
+            </a>
+                    <a href="#demo" class="p-4 transition hover:bg-marian-50">
+                <div class="text-sm text-marian-500">Siap diambil</div>
+                <div class="mt-1 text-2xl font-semibold text-indigo-600">1</div>
+            </a>
+                    <a href="admin-peminjaman-dipinjam.html" class="p-4 transition hover:bg-marian-50">
+                <div class="text-sm text-marian-500">Sedang dipinjam</div>
+                <div class="mt-1 text-2xl font-semibold text-marian-700">2</div>
+            </a>
+                    <a href="admin-peminjaman-terlambat.html" class="p-4 transition hover:bg-marian-50">
+                <div class="text-sm text-marian-500">Terlambat</div>
+                <div class="mt-1 text-2xl font-semibold text-red-600">1</div>
+            </a>
+                    <a href="admin-laporan-keterlambatan.html" class="p-4 transition hover:bg-marian-50">
+                <div class="text-sm text-marian-500">Kembali terlambat (bulan ini)</div>
+                <div class="mt-1 text-2xl font-semibold text-marian-900">1 unit</div>
+            </a>
+            </div>
+
+    
+    <div class="mt-6 grid gap-6 lg:grid-cols-2" x-data="grafikDashboard(JSON.parse('{\u0022periode\u0022:\u0022Mei 2026 \\u2013 Okt 2026\u0022,\u0022bulan\u0022:{\u0022label\u0022:[\u0022Mei 2026\u0022,\u0022Jun 2026\u0022,\u0022Jul 2026\u0022,\u0022Agt 2026\u0022,\u0022Sep 2026\u0022,\u0022Okt 2026\u0022],\u0022nilai\u0022:[0,0,0,0,0,3]},\u0022populer\u0022:{\u0022label\u0022:[\u0022Set Cawan Petri\u0022,\u0022Bead Sterilizer\u0022,\u0022Mikroskop Stereo\u0022,\u0022pH Meter Digital\u0022],\u0022nilai\u0022:[2,1,1,1]}}'))">
+        <section class="rounded-3xl bg-white p-4 shadow-lembut ring-1 ring-marian-100">
+            <h2 class="font-semibold text-marian-900">Peminjaman per bulan</h2>
+            <p class="text-xs text-marian-500">Jumlah transaksi diserahkan · Mei 2026 – Okt 2026</p>
+            <div class="relative mt-3 h-56"><canvas x-ref="bulan" role="img" aria-label="Grafik batang jumlah peminjaman per bulan"></canvas></div>
+            <details class="mt-2 text-xs text-marian-600">
+                <summary class="cursor-pointer">Lihat tabel</summary>
+                <table class="mt-2 w-full">
+                                            <tr class="border-t border-marian-50"><td class="py-1">Mei 2026</td><td class="py-1 text-right font-semibold text-marian-900">0</td></tr>
+                                            <tr class="border-t border-marian-50"><td class="py-1">Jun 2026</td><td class="py-1 text-right font-semibold text-marian-900">0</td></tr>
+                                            <tr class="border-t border-marian-50"><td class="py-1">Jul 2026</td><td class="py-1 text-right font-semibold text-marian-900">0</td></tr>
+                                            <tr class="border-t border-marian-50"><td class="py-1">Agt 2026</td><td class="py-1 text-right font-semibold text-marian-900">0</td></tr>
+                                            <tr class="border-t border-marian-50"><td class="py-1">Sep 2026</td><td class="py-1 text-right font-semibold text-marian-900">0</td></tr>
+                                            <tr class="border-t border-marian-50"><td class="py-1">Okt 2026</td><td class="py-1 text-right font-semibold text-marian-900">3</td></tr>
+                                    </table>
+            </details>
+        </section>
+
+        <section class="rounded-3xl bg-white p-4 shadow-lembut ring-1 ring-marian-100">
+            <h2 class="font-semibold text-marian-900">5 alat terpopuler</h2>
+            <p class="text-xs text-marian-500">Jumlah unit dipinjam · Mei 2026 – Okt 2026</p>
+                            <div class="relative mt-3 h-56"><canvas x-ref="populer" role="img" aria-label="Grafik batang lima alat paling sering dipinjam"></canvas></div>
+                <details class="mt-2 text-xs text-marian-600">
+                    <summary class="cursor-pointer">Lihat tabel</summary>
+                    <table class="mt-2 w-full">
+                                                    <tr class="border-t border-marian-50"><td class="py-1">Set Cawan Petri</td><td class="py-1 text-right font-semibold text-marian-900">2 unit</td></tr>
+                                                    <tr class="border-t border-marian-50"><td class="py-1">Bead Sterilizer</td><td class="py-1 text-right font-semibold text-marian-900">1 unit</td></tr>
+                                                    <tr class="border-t border-marian-50"><td class="py-1">Mikroskop Stereo</td><td class="py-1 text-right font-semibold text-marian-900">1 unit</td></tr>
+                                                    <tr class="border-t border-marian-50"><td class="py-1">pH Meter Digital</td><td class="py-1 text-right font-semibold text-marian-900">1 unit</td></tr>
+                                            </table>
+                </details>
+                    </section>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-3">
+        <div class="space-y-6 lg:col-span-2">
+            <div class="rounded-3xl bg-white shadow-lembut ring-1 ring-marian-100">
+                <div class="flex items-center justify-between border-b px-4 py-3">
+                    <h2 class="font-semibold text-marian-900">Ajuan menunggu verifikasi</h2>
+                    <a href="admin-ajuan.html" class="text-sm text-indigo-600 hover:underline">Semua</a>
+                </div>
+                <div class="divide-y">
+                                            <a href="admin-verifikasi.html" class="flex items-center justify-between gap-3 px-4 py-3 text-sm hover:bg-marian-50">
+                            <span>
+                                <span class="font-medium text-marian-900">Andi Pratama</span>
+                                <span class="block text-marian-500">Mikroskop Stereo ×1, Set Erlenmeyer ×1</span>
+                            </span>
+                            <span class="whitespace-nowrap text-marian-500">26 Okt</span>
+                        </a>
+                                    </div>
+            </div>
+
+            <div class="rounded-3xl bg-white shadow-lembut ring-1 ring-marian-100">
+                <div class="border-b px-4 py-3"><h2 class="font-semibold text-marian-900">Jatuh tempo hari ini & besok</h2></div>
+                <div class="divide-y">
+                                            <p class="p-6 text-center text-sm text-marian-500">Tidak ada yang jatuh tempo.</p>
+                                    </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="rounded-3xl bg-white p-4 shadow-lembut ring-1 ring-marian-100">
+                <h2 class="font-semibold text-marian-900">Status unit (30)</h2>
+                <div class="mt-3 space-y-2">
+                                                                    <div>
+                            <div class="flex justify-between text-sm"><span class="capitalize">tersedia</span><span class="font-medium">24</span></div>
+                            <div class="mt-1 h-2 rounded bg-marian-50">
+                                <div class="h-2 rounded bg-marian-400" style="width: 80%"></div>
+                            </div>
+                        </div>
+                                                                    <div>
+                            <div class="flex justify-between text-sm"><span class="capitalize">dipinjam</span><span class="font-medium">3</span></div>
+                            <div class="mt-1 h-2 rounded bg-marian-50">
+                                <div class="h-2 rounded bg-marian-700" style="width: 10%"></div>
+                            </div>
+                        </div>
+                                                                    <div>
+                            <div class="flex justify-between text-sm"><span class="capitalize">perbaikan</span><span class="font-medium">2</span></div>
+                            <div class="mt-1 h-2 rounded bg-marian-50">
+                                <div class="h-2 rounded bg-marian-500" style="width: 7%"></div>
+                            </div>
+                        </div>
+                                                                    <div>
+                            <div class="flex justify-between text-sm"><span class="capitalize">hilang</span><span class="font-medium">1</span></div>
+                            <div class="mt-1 h-2 rounded bg-marian-50">
+                                <div class="h-2 rounded bg-red-500" style="width: 3%"></div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+
+            <div class="rounded-3xl bg-white shadow-lembut ring-1 ring-marian-100">
+                <div class="border-b px-4 py-3"><h2 class="font-semibold text-red-700">Terlambat</h2></div>
+                <div class="divide-y">
+                                            <a href="admin-transaksi-terlambat.html" class="block px-4 py-3 text-sm hover:bg-marian-50">
+                            <span class="font-medium text-marian-900">Eko Saputra</span>
+                            <span class="float-right font-semibold text-red-600">+2 hari</span>
+                            <span class="block text-marian-500">pH Meter Digital ×1</span>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+                </main>
+            </div>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="">Pengunjung</a><a href="admin-dashboard.html" class="aktif">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>

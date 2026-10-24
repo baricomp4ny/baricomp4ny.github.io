@@ -84,7 +84,7 @@ window.PROJECTS = [
       "Alpine.js",
       "QR Code"
     ],
-    "link": "https://github.com/baricomp4ny/peminjaman-barang",
+    "link": "https://baricomp4ny.github.io/silvi/",
     "status": "",
     "image": "assets/projects/silvi.svg"
   }

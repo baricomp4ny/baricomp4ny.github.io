@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-gradient-to-b from-marian-50 via-white to-marian-50 font-sans text-marian-950 antialiased">
+        <div class="flex min-h-screen flex-col">
+            
+            <header x-data="{ open: false }" class="sticky top-0 z-40 px-3 pt-3 sm:px-6">
+                <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full bg-white/90 px-3 py-2 shadow-lembut ring-1 ring-marian-100 backdrop-blur sm:px-4">
+                    <a href="index.html" class="flex min-w-0 items-center gap-2.5">
+                        <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain">
+                        <span class="min-w-0 leading-tight">
+                            <span class="block truncate text-sm font-extrabold text-marian-900">Peminjaman Alat</span>
+                            <span class="block truncate text-[11px] font-medium text-marian-500">Lab Kultur Jaringan SV IPB</span>
+                        </span>
+                    </a>
+
+                    
+                    <div class="hidden items-center gap-1 md:flex">
+                                                                                <a href="index.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Katalog Alat
+                            </a>
+                                                                                <a href="jadwal.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Jadwal Alat
+                            </a>
+                                                                                <a href="ajuan.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Ajukan Peminjaman
+                            </a>
+                                                                                <a href="cek-status.html"  aria-current="page"                                class="rounded-full px-4 py-2 text-sm font-semibold transition bg-marian-800 text-white shadow-sm">
+                                Cek Status
+                            </a>
+                                            </div>
+
+                    <div class="hidden md:block">
+                        <a href="login.html"
+                           class="rounded-full border border-marian-200 px-4 py-2 text-sm font-semibold text-marian-800 transition hover:bg-marian-800 hover:text-white">
+                            Login Admin
+                        </a>
+                    </div>
+
+                    
+                    <button @click="open = ! open" class="flex h-10 w-10 items-center justify-center rounded-full text-marian-800 hover:bg-marian-50 md:hidden" :aria-expanded="open" aria-label="Buka menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path x-show="!open" d="M4 7h16M4 12h16M4 17h16" />
+                            <path x-show="open" d="M6 6l12 12M18 6L6 18" style="display: none;" />
+                        </svg>
+                    </button>
+                </nav>
+
+                
+                <div x-show="open" x-transition @click.outside="open = false" style="display: none;"
+                     class="mx-auto mt-2 max-w-7xl space-y-1 rounded-4xl bg-white p-3 shadow-lembut ring-1 ring-marian-100 md:hidden">
+                                            <a href="index.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Katalog Alat
+                        </a>
+                                            <a href="jadwal.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Jadwal Alat
+                        </a>
+                                            <a href="ajuan.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Ajukan Peminjaman
+                        </a>
+                                            <a href="cek-status.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold bg-marian-800 text-white">
+                            Cek Status
+                        </a>
+                                        <a href="login.html" class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-500 hover:bg-marian-50">
+                        Login Admin
+                    </a>
+                </div>
+            </header>
+
+            <main class="mx-auto w-full max-w-7xl flex-1 px-3 py-6 sm:px-6 lg:py-8">
+                
+                
+                <style>
+        @media print {
+            header, footer, .no-print { display: none !important; }
+            body, main { background: #fff !important; }
+        }
+    </style>
+
+    
+    <section class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-marian-950 via-marian-800 to-marian-500 px-6 py-7 text-white sm:px-10">
+        <div aria-hidden="true" class="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-white/10"></div>
+        <div class="relative flex flex-wrap items-center justify-between gap-4">
+            <div>
+                <div class="font-mono text-sm text-marian-200">PJM-20261022-0002</div>
+                <h1 class="mt-1 font-extrabold [font-size:clamp(1.4rem,3vw,2.2rem)]">Status Ajuan: <span class="capitalize">Disetujui</span></h1>
+                <p class="mt-1 text-sm text-marian-100">Budi Santoso · 24 Okt 2026 s/d 26 Okt 2026</p>
+            </div>
+            <button type="button" onclick="window.print()" class="no-print rounded-full bg-white px-5 py-2.5 text-sm font-bold text-marian-900 hover:bg-marian-100">Cetak bukti</button>
+        </div>
+    </section>
+
+    
+    
+    <div class="mt-6 grid overflow-hidden rounded-5xl bg-white shadow-lembut ring-1 ring-marian-100 lg:[grid-template-columns:minmax(0,1fr)_20rem]">
+        <div class="p-6 sm:p-8">
+                            <p class="border-l-4 border-marian-600 pl-4 text-sm text-marian-900">
+                    Ajuan <strong>disetujui</strong>. Ambil alat ke petugas mulai <strong>24 Oktober 2026</strong>
+                    paling lambat <strong>25 Oktober 2026</strong>. Tunjukkan QR dan bawa kartu identitas asli.
+                    Lewat dari batas itu ajuan otomatis kedaluwarsa.
+                </p>
+            
+            <div class="mt-6">
+    <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+            <div class="font-mono text-sm text-marian-500">PJM-20261022-0002</div>
+            <div class="mt-1 flex items-center gap-2">
+                <span class="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize bg-marian-600 text-white text-sm">disetujui</span>
+                            </div>
+        </div>
+        <div class="text-right text-sm text-marian-500">Diajukan 24 Okt 2026 12:45</div>
+    </div>
+
+    <dl class="mt-5 grid gap-4 text-sm sm:grid-cols-2">
+                <div>
+            <dt class="text-marian-500">Tanggal</dt>
+            <dd class="font-medium">
+                24 Okt 2026 s/d 26 Okt 2026
+                <span class="text-marian-500">(2 hari)</span>
+            </dd>
+        </div>
+        <div class="sm:col-span-2">
+            <dt class="text-marian-500">Tujuan</dt>
+            <dd>Pembuatan media MS praktikum Kultur Jaringan Tanaman</dd>
+        </div>
+                            <div>
+                <dt class="text-marian-500">Diverifikasi</dt>
+                <dd>24 Okt 2026 09:45 oleh Administrator</dd>
+            </div>
+                    </dl>
+
+    <h3 class="mt-6 text-sm font-semibold text-marian-900">Barang diajukan</h3>
+    <ul class="mt-2 divide-y rounded-2xl border border-marian-100 text-sm">
+                    <li class="flex justify-between px-3 py-2">
+                <span>Timbangan Analitik <span class="font-mono text-xs text-marian-500">TBA</span></span>
+                <span class="font-medium">× 1</span>
+            </li>
+                    <li class="flex justify-between px-3 py-2">
+                <span>Bunsen Burner <span class="font-mono text-xs text-marian-500">BNS</span></span>
+                <span class="font-medium">× 1</span>
+            </li>
+            </ul>
+
+    
+    <form method="POST" action="#demo" class="no-print mt-6 border-t border-marian-100 pt-4"
+                          onsubmit="return confirm('Batalkan ajuan PJM-20261022-0002?');">
+                        <input type="hidden" name="_token" value="" autocomplete="off">                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+    Batalkan Ajuan
+</button>
+                        <p class="mt-1 text-xs text-marian-500">Ajuan bisa dibatalkan selama alat belum diambil.</p>
+                    </form>
+</div>
+        </div>
+
+        
+        <aside class="border-t border-marian-100 bg-marian-50/60 p-6 text-center lg:border-l lg:border-t-0">
+            <div class="lg:sticky lg:top-28">
+                <div class="text-sm font-bold uppercase tracking-wider text-marian-700">QR Pengambilan</div>
+                <div class="mx-auto mt-4 w-52 rounded-3xl bg-white p-3 ring-1 ring-marian-100 [&>svg]:h-auto [&>svg]:w-full"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200" height="200" viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="#ffffff"/><g transform="scale(8.696)"><g transform="translate(1,1)"><path fill-rule="evenodd" d="M10 0L10 2L9 2L9 1L8 1L8 4L9 4L9 3L10 3L10 4L11 4L11 5L12 5L12 7L11 7L11 6L10 6L10 5L9 5L9 6L8 6L8 9L9 9L9 6L10 6L10 7L11 7L11 8L12 8L12 10L11 10L11 9L10 9L10 10L9 10L9 11L12 11L12 10L13 10L13 11L14 11L14 13L12 13L12 16L11 16L11 17L12 17L12 18L10 18L10 15L11 15L11 13L9 13L9 12L6 12L6 11L7 11L7 10L6 10L6 9L7 9L7 8L6 8L6 9L4 9L4 10L3 10L3 9L2 9L2 10L1 10L1 8L0 8L0 10L1 10L1 11L2 11L2 10L3 10L3 11L5 11L5 13L8 13L8 14L10 14L10 15L9 15L9 19L12 19L12 21L13 21L13 19L15 19L15 21L16 21L16 20L17 20L17 19L18 19L18 18L19 18L19 19L20 19L20 20L21 20L21 18L19 18L19 15L20 15L20 17L21 17L21 14L19 14L19 15L18 15L18 16L17 16L17 15L16 15L16 14L18 14L18 13L19 13L19 12L20 12L20 13L21 13L21 9L20 9L20 8L17 8L17 9L16 9L16 10L13 10L13 9L15 9L15 8L13 8L13 4L11 4L11 3L12 3L12 1L13 1L13 0ZM17 9L17 10L16 10L16 12L15 12L15 14L13 14L13 15L14 15L14 18L17 18L17 16L16 16L16 15L15 15L15 14L16 14L16 13L17 13L17 12L18 12L18 10L19 10L19 11L20 11L20 9ZM5 10L5 11L6 11L6 10ZM2 12L2 13L4 13L4 12ZM15 16L15 17L16 17L16 16ZM8 20L8 21L10 21L10 20ZM18 20L18 21L19 21L19 20ZM0 0L0 7L7 7L7 0ZM1 1L1 6L6 6L6 1ZM2 2L2 5L5 5L5 2ZM14 0L14 7L21 7L21 0ZM15 1L15 6L20 6L20 1ZM16 2L16 5L19 5L19 2ZM0 14L0 21L7 21L7 14ZM1 15L1 20L6 20L6 15ZM2 16L2 19L5 19L5 16Z" fill="#000000"/></g></g></svg>
+</div>
+                <div class="mt-3 font-mono text-lg font-extrabold tracking-wide text-marian-900">PJM-20261022-0002</div>
+                <div class="text-sm text-marian-600">Budi Santoso</div>
+                <p class="mt-3 text-xs text-marian-500">Simpan kode ini atau screenshot QR untuk ditunjukkan ke petugas.</p>
+            </div>
+        </aside>
+    </div>
+            </main>
+
+            
+            <footer class="mt-10 rounded-t-5xl bg-gradient-to-br from-marian-950 via-marian-900 to-marian-700 text-marian-100">
+                <div class="mx-auto grid max-w-7xl gap-8 px-6 py-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain bg-white/90 p-0.5">
+                            <span class="text-base font-extrabold text-white">Peminjaman Alat</span>
+                        </div>
+                        <p class="mt-3 text-sm leading-relaxed text-marian-200">Laboratorium Kultur Jaringan Sekolah Vokasi IPB University</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Lokasi & Layanan</div>
+                        <p class="mt-2 text-marian-200">Sekolah Vokasi IPB University, Jl. Kumbang No. 14, Bogor</p>
+                        <p class="mt-1 text-marian-200">Senin-Jumat, 08.00-15.00 WIB</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Tautan</div>
+                        <ul class="mt-2 space-y-1.5">
+                                                            <li><a href="index.html" class="text-marian-200 hover:text-white">Katalog Alat</a></li>
+                                                            <li><a href="jadwal.html" class="text-marian-200 hover:text-white">Jadwal Alat</a></li>
+                                                            <li><a href="ajuan.html" class="text-marian-200 hover:text-white">Ajukan Peminjaman</a></li>
+                                                            <li><a href="cek-status.html" class="text-marian-200 hover:text-white">Cek Status</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 px-6 py-4 text-center text-xs text-marian-300">
+                    Peminjam tidak perlu login — ajukan, lalu cek status dengan kode peminjaman dan NIM.
+                </div>
+            </footer>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="aktif">Pengunjung</a><a href="admin-dashboard.html" class="">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>

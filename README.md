@@ -16,6 +16,7 @@ Portofolio/
 ├── data/
 │   ├── profile.js      # tagline + 3 statistik di bagian atas (diubah lewat admin)
 │   └── projects.js     # data Proyek Pilihan (diubah lewat admin)
+├── silvi/              # demo tampilan SILVI (HTML statis hasil potret aplikasi Laravel)
 ├── data.txt            # sumber data isi website
 ├── referensi.png       # acuan gaya visual
 └── assets/
@@ -107,3 +108,9 @@ lalu buka http://localhost:8765.
 
 ---
 © Muhammad Fikri Bari
+
+## Demo tampilan SILVI
+
+Folder `silvi/` berisi potret statis aplikasi SILVI (Laravel) agar tampilannya bisa dicoba
+di GitHub Pages: **https://baricomp4ny.github.io/silvi/**. Halaman bisa diklik (pengunjung & admin),
+tetapi tombol yang menyimpan data dimatikan. Kode lengkap: https://github.com/baricomp4ny/peminjaman-barang

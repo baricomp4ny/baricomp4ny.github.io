@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-marian-50 font-sans text-marian-950 antialiased">
+        <div x-data="{ sidebar: false }" class="min-h-screen">
+            
+            <div x-show="sidebar" x-transition.opacity @click="sidebar = false"
+                 class="fixed inset-0 z-30 bg-gray-900/50 lg:hidden" style="display: none;"></div>
+
+            
+            <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full'"
+                   class="fixed inset-y-0 left-0 z-40 w-64 transform overflow-y-auto bg-gradient-to-b from-marian-950 via-marian-900 to-marian-700 text-marian-100 transition-transform duration-200 lg:translate-x-0">
+                <div class="flex h-16 items-center gap-2 border-b border-white/10 px-5">
+                    <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain !h-9 !w-9 bg-white/90 p-0.5">
+                    <div class="leading-tight">
+                        <div class="text-sm font-extrabold text-white">Peminjaman Alat</div>
+                        <div class="text-xs text-marian-300">Panel Admin · <a href="index.html" class="hover:text-white">Lihat situs</a></div>
+                    </div>
+                </div>
+
+                <nav class="space-y-1 px-3 py-4 text-sm">
+                                                                        <a href="admin-dashboard.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Dashboard</span>
+    </a>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Data Barang
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-barang.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Jenis Barang</span>
+    </a>
+                                                                            <a href="admin-unit.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Unit &amp; Kondisi</span>
+    </a>
+                                                                            <a href="admin-kategori.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Kategori</span>
+    </a>
+                                                                            <a href="admin-lokasi.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Lokasi</span>
+    </a>
+                                                                            <a href="#demo"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Cetak Label Barcode</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <a href="admin-peminjam.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Data Peminjam</span>
+    </a>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Transaksi
+                                                                                    <span class="rounded-full bg-white px-2 text-xs font-bold text-marian-800">1</span>
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-ajuan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Ajuan Peminjaman</span>
+            <span class="rounded-full px-2 text-xs font-bold bg-white text-marian-800">1</span>
+    </a>
+                                                                            <a href="admin-peminjaman.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Peminjaman Aktif</span>
+    </a>
+                                                                            <a href="admin-jadwal.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Jadwal Pemakaian</span>
+    </a>
+                                                                            <a href="admin-riwayat.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Riwayat Transaksi</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <a href="admin-scan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Scan Barcode</span>
+    </a>
+                                                                                                <div x-data="{ buka: true }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Laporan
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3" >
+                                                                            <a href="admin-laporan-pengembalian.html"
+    aria-current="page"    class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition bg-white text-marian-900 shadow-sm">
+    <span>Pengembalian</span>
+    </a>
+                                                                            <a href="admin-laporan-inventaris.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Inventaris</span>
+    </a>
+                                                                            <a href="admin-laporan-keterlambatan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Keterlambatan</span>
+    </a>
+                                                                            <a href="admin-laporan-statistik.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Statistik Pemakaian</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                                                                <div x-data="{ buka: false }">
+                                <button type="button" @click="buka = !buka"
+                                        class="flex w-full items-center justify-between rounded-xl px-3 py-2 font-semibold text-marian-100 hover:bg-white/10 hover:text-white">
+                                    <span class="flex items-center gap-2">
+                                        Pengaturan
+                                                                            </span>
+                                    <svg :class="buka && 'rotate-90'" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.17 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"/></svg>
+                                </button>
+                                <div x-show="buka" x-transition class="mt-1 space-y-1 pl-3"  style="display: none;" >
+                                                                            <a href="admin-data-admin.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Data Admin</span>
+    </a>
+                                                                            <a href="admin-pengaturan.html"
+      class="flex items-center justify-between rounded-xl px-3 py-2 font-medium transition text-marian-100 hover:bg-white/10 hover:text-white">
+    <span>Aturan Peminjaman</span>
+    </a>
+                                                                    </div>
+                            </div>
+                                                            </nav>
+            </aside>
+
+            
+            <div class="lg:pl-64">
+                <header class="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-marian-100 bg-white/90 px-4 backdrop-blur sm:px-6">
+                    <div class="flex items-center gap-3">
+                        <button type="button" @click="sidebar = true" class="rounded-full p-2 text-marian-700 hover:bg-marian-50 lg:hidden" aria-label="Buka menu">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        </button>
+                                                    
+                            <div class="min-w-0 leading-tight">
+                                <div class="font-extrabold text-marian-900">Laporan</div>
+                                <div class="hidden truncate text-xs text-marian-500 sm:block">Rekapitulasi pengembalian, inventaris, keterlambatan, dan statistik pemakaian</div>
+                            </div>
+                                            </div>
+
+                    
+                    <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+    <div @click="open = ! open">
+        <button class="flex items-center gap-2 rounded-full text-sm font-semibold text-marian-800 hover:text-marian-950 focus:outline-none">
+                                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-marian-900 to-marian-600 font-bold text-white">
+                                    A
+                                </span>
+                                <span class="hidden sm:inline">Administrator</span>
+                            </button>
+    </div>
+
+    <div x-show="open"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="absolute z-50 mt-2 w-48 rounded-md shadow-lg ltr:origin-top-right rtl:origin-top-left end-0"
+            style="display: none;"
+            @click="open = false">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+            <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo">Profil</a>
+                            <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo">Ganti Password</a>
+                            <form method="POST" action="#demo">
+                                <input type="hidden" name="_token" value="" autocomplete="off">                                <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="#demo" onclick="event.preventDefault(); this.closest('form').submit();">Keluar</a>
+                            </form>
+        </div>
+    </div>
+</div>
+                </header>
+
+                <main class="p-4 sm:p-6">
+                                        <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+                    <div class="relative overflow-hidden rounded-2xl p-4 text-white shadow-lembut sm:p-5 bg-marian-800">
+    <div class="flex items-end justify-between gap-2">
+        <span class="font-extrabold leading-none [font-size:clamp(1.75rem,3vw,2.25rem)]">2</span>
+        <span class="flex items-end gap-1 opacity-50" aria-hidden="true">
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 32px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 20px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 28px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 12px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 24px"></i>
+                    </span>
+    </div>
+    <div class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-marian-100">Unit dikembalikan</div>
+    
+    <i class="absolute inset-y-0 right-0 w-1.5 bg-white/25" aria-hidden="true"></i>
+</div>
+                    <div class="relative overflow-hidden rounded-2xl p-4 text-white shadow-lembut sm:p-5 bg-marian-700">
+    <div class="flex items-end justify-between gap-2">
+        <span class="font-extrabold leading-none [font-size:clamp(1.75rem,3vw,2.25rem)]">1</span>
+        <span class="flex items-end gap-1 opacity-50" aria-hidden="true">
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 24px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 32px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 32px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 28px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 32px"></i>
+                    </span>
+    </div>
+    <div class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-marian-100">Kondisi baik</div>
+    
+    <i class="absolute inset-y-0 right-0 w-1.5 bg-white/25" aria-hidden="true"></i>
+</div>
+                    <div class="relative overflow-hidden rounded-2xl p-4 text-white shadow-lembut sm:p-5 bg-marian-600">
+    <div class="flex items-end justify-between gap-2">
+        <span class="font-extrabold leading-none [font-size:clamp(1.75rem,3vw,2.25rem)]">1</span>
+        <span class="flex items-end gap-1 opacity-50" aria-hidden="true">
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 16px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 12px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 16px"></i>
+                    </span>
+    </div>
+    <div class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-marian-100">Rusak / hilang</div>
+    
+    <i class="absolute inset-y-0 right-0 w-1.5 bg-magenta" aria-hidden="true"></i>
+</div>
+                    <div class="relative overflow-hidden rounded-2xl p-4 text-white shadow-lembut sm:p-5 bg-marian-500">
+    <div class="flex items-end justify-between gap-2">
+        <span class="font-extrabold leading-none [font-size:clamp(1.75rem,3vw,2.25rem)]">1</span>
+        <span class="flex items-end gap-1 opacity-50" aria-hidden="true">
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 12px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                            <i class="w-1.5 rounded-sm bg-white sm:w-2" style="height: 8px"></i>
+                    </span>
+    </div>
+    <div class="mt-2 text-[11px] font-semibold uppercase tracking-wider text-marian-100">Kembali terlambat</div>
+    
+    <i class="absolute inset-y-0 right-0 w-1.5 bg-magenta" aria-hidden="true"></i>
+</div>
+            </div>
+
+    
+    <details class="group mt-3">
+        <summary class="inline-flex cursor-pointer list-none items-center gap-1 text-xs font-bold uppercase tracking-wider text-marian-600 hover:text-marian-900">
+            Rincian ringkasan <span class="transition group-open:rotate-180">▾</span>
+        </summary>
+        <div class="mt-3 grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))]">
+                            <section class="rounded-2xl bg-white p-4 shadow-lembut ring-1 ring-marian-100">
+                    <h3 class="text-xs font-bold uppercase tracking-wide text-marian-500">Ringkasan</h3>
+                    <dl class="mt-2 divide-y divide-marian-50 text-sm">
+                                                    <div class="flex items-baseline justify-between gap-3 py-1.5">
+                                <dt class="text-marian-600">Unit dikembalikan</dt>
+                                <dd class="text-right font-bold text-marian-900">2</dd>
+                            </div>
+                                                    <div class="flex items-baseline justify-between gap-3 py-1.5">
+                                <dt class="text-marian-600">Hilang</dt>
+                                <dd class="text-right font-bold text-marian-900">0</dd>
+                            </div>
+                                                    <div class="flex items-baseline justify-between gap-3 py-1.5">
+                                <dt class="text-marian-600">Kembali terlambat</dt>
+                                <dd class="text-right font-bold text-marian-900">1 unit</dd>
+                            </div>
+                                            </dl>
+                </section>
+                            <section class="rounded-2xl bg-white p-4 shadow-lembut ring-1 ring-marian-100">
+                    <h3 class="text-xs font-bold uppercase tracking-wide text-marian-500">Per Kondisi</h3>
+                    <dl class="mt-2 divide-y divide-marian-50 text-sm">
+                                                    <div class="flex items-baseline justify-between gap-3 py-1.5">
+                                <dt class="text-marian-600">Baik</dt>
+                                <dd class="text-right font-bold text-marian-900">1</dd>
+                            </div>
+                                                    <div class="flex items-baseline justify-between gap-3 py-1.5">
+                                <dt class="text-marian-600">Rusak</dt>
+                                <dd class="text-right font-bold text-red-600">1</dd>
+                            </div>
+                                            </dl>
+                </section>
+                    </div>
+    </details>
+
+    
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+            <h1 class="font-light uppercase tracking-wide text-marian-900 [font-size:clamp(1.4rem,2.6vw,2rem)]">Laporan Pengembalian</h1>
+            <p class="text-xs text-marian-500">01 Oktober 2026 s/d 24 Oktober 2026</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-marian-500">
+            <label class="flex items-center gap-2">Jenis
+                <select onchange="window.location = this.value" aria-label="Pilih jenis laporan"
+                        class="rounded-full border-0 bg-white py-2 pe-8 ps-4 text-[11px] font-bold uppercase tracking-wider text-marian-700 shadow-lembut ring-1 ring-marian-100 focus:ring-marian-400">
+                                            <option value="admin-laporan-pengembalian.html" selected>Pengembalian</option>
+                                            <option value="admin-laporan-inventaris.html" >Inventaris Barang</option>
+                                            <option value="admin-laporan-keterlambatan.html" >Keterlambatan</option>
+                                            <option value="admin-laporan-statistik.html" >Statistik Pemakaian</option>
+                                    </select>
+            </label>
+
+                            <form method="GET" class="flex flex-wrap items-center gap-2">
+                    <span>Periode</span>
+                    <input type="date" name="dari" value="2026-10-01" aria-label="Dari tanggal"
+                           class="rounded-full border-0 bg-white px-4 py-2 text-xs font-bold text-marian-700 shadow-lembut ring-1 ring-marian-100 focus:ring-marian-400">
+                    <span>–</span>
+                    <input type="date" name="sampai" value="2026-10-24" aria-label="Sampai tanggal"
+                           class="rounded-full border-0 bg-white px-4 py-2 text-xs font-bold text-marian-700 shadow-lembut ring-1 ring-marian-100 focus:ring-marian-400">
+                    <button class="rounded-full bg-white px-4 py-2 font-bold text-marian-800 shadow-lembut ring-1 ring-marian-200 hover:bg-marian-50">Tampilkan</button>
+                </form>
+            
+            <a href="#demo" class="rounded-full bg-white px-4 py-2 font-bold text-marian-800 ring-1 ring-marian-200 hover:bg-marian-50">PDF</a>
+            <a href="#demo" class="rounded-full bg-marian-800 px-4 py-2 font-bold text-white hover:bg-marian-900">Excel</a>
+        </div>
+    </div>
+    
+    
+    <div class="mt-4" style="--kolom: 1.2fr 1.6fr 1fr 1.2fr 1fr 2.5rem">
+        <div class="hidden px-5 text-[11px] font-semibold uppercase tracking-wider text-marian-400 md:grid md:[grid-template-columns:var(--kolom)] md:gap-3">
+                            <span>Kode Peminjaman</span>
+                            <span>Peminjam</span>
+                            <span>Kode Unit</span>
+                            <span>Dikembalikan</span>
+                            <span>Kondisi</span>
+                        <span></span>
+        </div>
+
+        <div class="mt-2 space-y-2">
+                            <div x-data="{ buka: false }" class="overflow-hidden rounded-2xl bg-white shadow-lembut ring-1 transition" :class="buka ? 'ring-marian-200' : 'ring-transparent'">
+                    <button type="button" @click="buka = ! buka" :aria-expanded="buka"
+                            class="grid w-full grid-cols-2 items-center gap-x-3 gap-y-1 border-l-4 px-5 py-3.5 text-left text-sm transition hover:bg-marian-50/60 md:[grid-template-columns:var(--kolom)]"
+                            :class="buka ? 'border-marian-800' : 'border-transparent'">
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kode Peminjaman</span>
+                                                                    <span class="font-mono font-semibold text-marian-900">PJM-20261016-0006</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Peminjam</span>
+                                                                    <span class="font-semibold text-marian-900 break-words">Andi Pratama</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kode Unit</span>
+                                                                    <span class="text-marian-600 break-words">STR-003</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Dikembalikan</span>
+                                                                    <span class="text-marian-600 break-words">20/10/2026 15:00</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kondisi</span>
+                                                                    <b class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-red-50 text-red-700">Rusak</b>
+                                                            </span>
+                                                <span class="col-span-2 text-right text-marian-400 md:col-span-1" aria-hidden="true">
+                            <span class="inline-block transition" :class="buka && 'rotate-180 text-marian-800'">⌄</span>
+                        </span>
+                    </button>
+
+                    <div x-show="buka" x-transition.opacity style="display: none;" class="border-t border-marian-100 bg-marian-50 px-5 py-4 text-xs sm:px-8">
+                        <dl class="grid gap-x-8 gap-y-1.5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))]">
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Barang</dt>
+                                    <dd class="font-semibold text-marian-900">Bead Sterilizer</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Diserahkan</dt>
+                                    <dd class="font-semibold text-marian-900">18/10/2026</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Terlambat (hari)</dt>
+                                    <dd class="font-semibold text-marian-900">0</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Catatan</dt>
+                                    <dd class="font-semibold text-marian-900">Elemen pemanas tidak panas saat dicoba.</dd>
+                                </div>
+                                                    </dl>
+                                                    <div class="mt-3 flex flex-wrap items-center gap-3">
+                                                                                                            <a href="#demo" class="font-bold text-marian-800 underline-offset-2 hover:underline">Buka transaksi →</a>
+                                                                                                </div>
+                                            </div>
+                </div>
+                            <div x-data="{ buka: false }" class="overflow-hidden rounded-2xl bg-white shadow-lembut ring-1 transition" :class="buka ? 'ring-marian-200' : 'ring-transparent'">
+                    <button type="button" @click="buka = ! buka" :aria-expanded="buka"
+                            class="grid w-full grid-cols-2 items-center gap-x-3 gap-y-1 border-l-4 px-5 py-3.5 text-left text-sm transition hover:bg-marian-50/60 md:[grid-template-columns:var(--kolom)]"
+                            :class="buka ? 'border-marian-800' : 'border-transparent'">
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kode Peminjaman</span>
+                                                                    <span class="font-mono font-semibold text-marian-900">PJM-20261016-0006</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Peminjam</span>
+                                                                    <span class="font-semibold text-marian-900 break-words">Andi Pratama</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kode Unit</span>
+                                                                    <span class="text-marian-600 break-words">MKR-004</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Dikembalikan</span>
+                                                                    <span class="text-marian-600 break-words">22/10/2026 10:00</span>
+                                                            </span>
+                                                    <span class="min-w-0">
+                                
+                                <span class="block text-[10px] uppercase tracking-wider text-marian-400 md:hidden">Kondisi</span>
+                                                                    <b class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-marian-50 text-marian-700">Baik</b>
+                                                            </span>
+                                                <span class="col-span-2 text-right text-marian-400 md:col-span-1" aria-hidden="true">
+                            <span class="inline-block transition" :class="buka && 'rotate-180 text-marian-800'">⌄</span>
+                        </span>
+                    </button>
+
+                    <div x-show="buka" x-transition.opacity style="display: none;" class="border-t border-marian-100 bg-marian-50 px-5 py-4 text-xs sm:px-8">
+                        <dl class="grid gap-x-8 gap-y-1.5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))]">
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Barang</dt>
+                                    <dd class="font-semibold text-marian-900">Mikroskop Stereo</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Diserahkan</dt>
+                                    <dd class="font-semibold text-marian-900">18/10/2026</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Terlambat (hari)</dt>
+                                    <dd class="font-semibold text-marian-900">2</dd>
+                                </div>
+                                                            <div class="grid grid-cols-[8rem_1fr] gap-2">
+                                    <dt class="text-marian-500">Catatan</dt>
+                                    <dd class="font-semibold text-marian-900">-</dd>
+                                </div>
+                                                    </dl>
+                                                    <div class="mt-3 flex flex-wrap items-center gap-3">
+                                                                                                            <a href="#demo" class="font-bold text-marian-800 underline-offset-2 hover:underline">Buka transaksi →</a>
+                                                                                                </div>
+                                            </div>
+                </div>
+                    </div>
+    </div>
+                </main>
+            </div>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="">Pengunjung</a><a href="admin-dashboard.html" class="aktif">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>

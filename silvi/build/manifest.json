@@ -1,0 +1,27 @@
+{
+  "node_modules/chart.js/dist/chart.js": {
+    "file": "assets/chart-f23a2190.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/chart.js/dist/chart.js"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-0ff81cb9.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-f7f236c2.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-f7f236c2.css"
+    ],
+    "dynamicImports": [
+      "node_modules/chart.js/dist/chart.js"
+    ],
+    "file": "assets/app-5bb29f57.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-gradient-to-b from-marian-50 via-white to-marian-50 font-sans text-marian-950 antialiased">
+        <div class="flex min-h-screen flex-col">
+            
+            <header x-data="{ open: false }" class="sticky top-0 z-40 px-3 pt-3 sm:px-6">
+                <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full bg-white/90 px-3 py-2 shadow-lembut ring-1 ring-marian-100 backdrop-blur sm:px-4">
+                    <a href="index.html" class="flex min-w-0 items-center gap-2.5">
+                        <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain">
+                        <span class="min-w-0 leading-tight">
+                            <span class="block truncate text-sm font-extrabold text-marian-900">Peminjaman Alat</span>
+                            <span class="block truncate text-[11px] font-medium text-marian-500">Lab Kultur Jaringan SV IPB</span>
+                        </span>
+                    </a>
+
+                    
+                    <div class="hidden items-center gap-1 md:flex">
+                                                                                <a href="index.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Katalog Alat
+                            </a>
+                                                                                <a href="jadwal.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Jadwal Alat
+                            </a>
+                                                                                <a href="ajuan.html"  aria-current="page"                                class="rounded-full px-4 py-2 text-sm font-semibold transition bg-marian-800 text-white shadow-sm">
+                                Ajukan Peminjaman
+                            </a>
+                                                                                <a href="cek-status.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Cek Status
+                            </a>
+                                            </div>
+
+                    <div class="hidden md:block">
+                        <a href="login.html"
+                           class="rounded-full border border-marian-200 px-4 py-2 text-sm font-semibold text-marian-800 transition hover:bg-marian-800 hover:text-white">
+                            Login Admin
+                        </a>
+                    </div>
+
+                    
+                    <button @click="open = ! open" class="flex h-10 w-10 items-center justify-center rounded-full text-marian-800 hover:bg-marian-50 md:hidden" :aria-expanded="open" aria-label="Buka menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path x-show="!open" d="M4 7h16M4 12h16M4 17h16" />
+                            <path x-show="open" d="M6 6l12 12M18 6L6 18" style="display: none;" />
+                        </svg>
+                    </button>
+                </nav>
+
+                
+                <div x-show="open" x-transition @click.outside="open = false" style="display: none;"
+                     class="mx-auto mt-2 max-w-7xl space-y-1 rounded-4xl bg-white p-3 shadow-lembut ring-1 ring-marian-100 md:hidden">
+                                            <a href="index.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Katalog Alat
+                        </a>
+                                            <a href="jadwal.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Jadwal Alat
+                        </a>
+                                            <a href="ajuan.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold bg-marian-800 text-white">
+                            Ajukan Peminjaman
+                        </a>
+                                            <a href="cek-status.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Cek Status
+                        </a>
+                                        <a href="login.html" class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-500 hover:bg-marian-50">
+                        Login Admin
+                    </a>
+                </div>
+            </header>
+
+            <main class="mx-auto w-full max-w-7xl flex-1 px-3 py-6 sm:px-6 lg:py-8">
+                
+                
+                <section class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-marian-950 via-marian-800 to-marian-500 px-6 py-8 text-white sm:px-10">
+        <div aria-hidden="true" class="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/10"></div>
+        <div class="relative flex flex-wrap items-center justify-between gap-6">
+            <div class="max-w-2xl">
+                <span class="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ring-1 ring-white/25">Tanpa login</span>
+                <h1 class="mt-3 font-extrabold [font-size:clamp(1.6rem,3.4vw,2.5rem)]">Ajukan Peminjaman Alat</h1>
+                <p class="mt-2 text-sm text-marian-100">Isi identitas, pilih alat dan tanggal. Kode peminjaman beserta QR pengambilan akan tampil setelah dikirim dan dikirim juga ke email Anda.</p>
+            </div>
+            <svg class="h-10 w-10 hidden h-24 w-24 text-white/30 sm:block" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 6h10" /><path d="M21 6v12L10 38a3 3 0 0 0 2.6 4h22.8a3 3 0 0 0 2.6-4L27 18V6" /><path d="M14 30h20" />
+            <path d="M22 26c2-4 6-2 6-6" />
+    </svg>
+        </div>
+    </section>
+
+    
+    <div class="mt-6 grid gap-4 lg:[grid-template-columns:minmax(0,1fr)_20rem]">
+        <div class="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-marian-50 p-5 ring-1 ring-marian-200">
+            <div class="flex min-w-0 items-start gap-3">
+                <svg class="h-6 w-6 shrink-0 text-marian-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5M9 13h6M9 17h6M9 9h1" /></svg>
+                <div>
+                    <p class="font-bold text-marian-900">Surat peminjaman wajib disiapkan sebelum dikirim.</p>
+                    <p class="mt-1 text-sm text-marian-700">Gunakan satu surat yang mencantumkan seluruh alat yang dipinjam dan tanggal peminjaman.</p>
+                </div>
+            </div>
+            <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 text-sm font-bold text-marian-900 shadow-sm ring-1 ring-marian-200 transition hover:bg-marian-100">
+                Buka Template Surat
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>
+            </a>
+        </div>
+        <div class="flex items-center gap-3 rounded-3xl bg-marian-50 p-5 ring-1 ring-marian-200">
+            <svg class="h-6 w-6 shrink-0 text-marian-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+            <p class="font-bold text-marian-900">Estimasi peninjauan maksimal 2 hari kerja.</p>
+        </div>
+    </div>
+
+    <div class="mt-6 grid items-start gap-6 lg:[grid-template-columns:minmax(0,1fr)_20rem]"
+         x-data="formAjuan(JSON.parse('[{\u0022barang_id\u0022:\u002201m5p72kxmjbfqg16g7jy2q031\u0022,\u0022jumlah\u0022:1}]'), '2026-10-24', '2026-10-25', 3, JSON.parse('{\u002201m5p72kxmjbfqg16g7jy2q031\u0022:\u0022Bead Sterilizer\u0022,\u002201m5p72kv7g88zrajb4fg44t9g\u0022:\u0022Bunsen Burner\u0022,\u002201m5p72ktcp12q99jwz53xmwnw\u0022:\u0022Hot Plate Stirrer\u0022,\u002201m5p72kw87drgwc88r4t9hhd1\u0022:\u0022Mikropipet\u0022,\u002201m5p72ks2b812f27q0setvfzr\u0022:\u0022Mikroskop Stereo\u0022,\u002201m5p72ksv259npyjk484zsc27\u0022:\u0022pH Meter Digital\u0022,\u002201m5p72kwqkwwb7zvqh9ct69jp\u0022:\u0022Set Cawan Petri\u0022,\u002201m5p72kx7mftk0mtqrxdmw5x0\u0022:\u0022Set Erlenmeyer\u0022,\u002201m5p72kvr24yq99rkj0rnawp8\u0022:\u0022Set Pinset \\u0026 Scalpel\u0022,\u002201m5p72kttfpt8n66pmrsttj7w\u0022:\u0022Timbangan Analitik\u0022}'))"
+         x-init="cekStok()">
+
+        <form method="POST" action="ajuan.html" enctype="multipart/form-data" class="space-y-6 rounded-5xl bg-white p-5 shadow-lembut ring-1 ring-marian-100 sm:p-8">
+            <input type="hidden" name="_token" value="" autocomplete="off">
+            
+            <fieldset>
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">1</span> Identitas Peminjam
+                </legend>
+                <div class="mt-4 grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]">
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="name">
+    Nama Lengkap *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="name" name="name" required="required" maxlength="255" autocomplete="name">
+                                            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="nomor_identitas">
+    Nomor Identitas (NIM/NIP) *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="nomor_identitas" name="nomor_identitas" required="required" maxlength="50" placeholder="J0301…">
+                                            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="email">
+    Email *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="email" type="email" name="email" required="required" maxlength="255" autocomplete="email">
+                        <p class="mt-1 text-xs text-marian-500">Kode peminjaman dan kabar persetujuan dikirim ke email ini.</p>
+                                            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="no_hp">
+    No. HP / WhatsApp *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="no_hp" name="no_hp" required="required" maxlength="20" placeholder="08xxxxxxxxxx" autocomplete="tel">
+                                            </div>
+                    <div class="col-span-full">
+                        <label class="block text-sm font-semibold text-marian-900" for="unit">
+    Program Studi / Unit
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="unit" name="unit" maxlength="100" placeholder="Mis. Teknologi Industri Benih">
+                                            </div>
+                </div>
+                
+                <div class="hidden" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input id="website" type="text" name="website" tabindex="-1" autocomplete="off">
+                </div>
+            </fieldset>
+
+            
+            <fieldset class="border-t border-marian-100 pt-6">
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">2</span> Jadwal Peminjaman
+                </legend>
+                <div class="mt-4 grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))]">
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="tanggal_pinjam">
+    Tanggal Pinjam *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="tanggal_pinjam" type="date" name="tanggal_pinjam" min="2026-10-24" x-model="mulai" x-on:change="cekStok()" required="required">
+                                            </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-marian-900" for="tanggal_rencana_kembali">
+    Tanggal Rencana Kembali *
+</label>
+                        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" id="tanggal_rencana_kembali" type="date" name="tanggal_rencana_kembali" x-bind:min="mulai" x-model="selesai" x-on:change="cekStok()" required="required">
+                                            </div>
+                </div>
+                <p class="mt-2 text-xs text-marian-500">Lama pinjam maksimal 7 hari.
+                    <span x-show="lama() !== null" class="font-semibold" :class="lama() > 7 ? 'text-red-600' : 'text-marian-800'" x-text="'Lama: ' + lama() + ' hari'"></span>
+                </p>
+            </fieldset>
+
+            
+            <fieldset class="border-t border-marian-100 pt-6">
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">3</span> Alat yang Dipinjam
+                </legend>
+                <p class="mt-2 text-xs text-marian-500">Maksimal 3 unit per ajuan. Sisa unit dihitung untuk rentang tanggal di atas.</p>
+
+                <div class="mt-3 space-y-3">
+                    <template x-for="(baris, i) in items" :key="i">
+                        <div class="rounded-3xl bg-marian-50 p-3 ring-1 ring-marian-100">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <select :name="`items[${i}][barang_id]`" x-model="baris.barang_id" @change="cekStok()" aria-label="Pilih alat"
+                                        class="min-w-[12rem] flex-1 rounded-xl border-marian-200 bg-white text-marian-950 shadow-sm focus:border-marian-500 focus:ring-marian-500">
+                                    <option value="">— Pilih alat —</option>
+                                                                            <option value="01m5p72kxmjbfqg16g7jy2q031">Bead Sterilizer</option>
+                                                                            <option value="01m5p72kv7g88zrajb4fg44t9g">Bunsen Burner</option>
+                                                                            <option value="01m5p72ktcp12q99jwz53xmwnw">Hot Plate Stirrer</option>
+                                                                            <option value="01m5p72kw87drgwc88r4t9hhd1">Mikropipet</option>
+                                                                            <option value="01m5p72ks2b812f27q0setvfzr">Mikroskop Stereo</option>
+                                                                            <option value="01m5p72ksv259npyjk484zsc27">pH Meter Digital</option>
+                                                                            <option value="01m5p72kwqkwwb7zvqh9ct69jp">Set Cawan Petri</option>
+                                                                            <option value="01m5p72kx7mftk0mtqrxdmw5x0">Set Erlenmeyer</option>
+                                                                            <option value="01m5p72kvr24yq99rkj0rnawp8">Set Pinset &amp; Scalpel</option>
+                                                                            <option value="01m5p72kttfpt8n66pmrsttj7w">Timbangan Analitik</option>
+                                                                    </select>
+                                
+                                <div class="flex items-center rounded-full bg-white ring-1 ring-marian-200">
+                                    <button type="button" @click="baris.jumlah = Math.max(1, (parseInt(baris.jumlah) || 1) - 1)" class="h-10 w-10 rounded-full text-lg font-bold text-marian-700 hover:bg-marian-50" aria-label="Kurangi">−</button>
+                                    <input type="number" min="1" :name="`items[${i}][jumlah]`" x-model.number="baris.jumlah" aria-label="Jumlah"
+                                           class="w-12 border-0 bg-transparent p-0 text-center font-bold text-marian-900 focus:ring-0">
+                                    <button type="button" @click="baris.jumlah = (parseInt(baris.jumlah) || 0) + 1" class="h-10 w-10 rounded-full text-lg font-bold text-marian-700 hover:bg-marian-50" aria-label="Tambah">+</button>
+                                </div>
+                                <button type="button" @click="hapus(i)" x-show="items.length > 1"
+                                        class="rounded-full px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50">Hapus</button>
+                            </div>
+                            <div class="mt-2 px-1 text-xs" x-show="baris.barang_id && stok[baris.barang_id] !== undefined">
+                                <span class="font-semibold" :class="stok[baris.barang_id] >= baris.jumlah ? 'text-marian-700' : 'text-red-600'"
+                                      x-text="'Sisa ' + stok[baris.barang_id] + ' unit pada tanggal tersebut'"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                
+                <button type="button" @click="tambah()" class="mt-3 inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-sm font-bold text-marian-700 ring-1 ring-marian-200 hover:bg-marian-50">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+                    Tambah alat
+                </button>
+            </fieldset>
+
+            
+            <fieldset class="border-t border-marian-100 pt-6">
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">4</span> Tujuan Peminjaman
+                </legend>
+                <textarea id="tujuan" name="tujuan" rows="3" minlength="5" maxlength="500" required aria-label="Tujuan peminjaman"
+                          class="mt-4 block w-full rounded-2xl border-marian-200 text-marian-950 shadow-sm placeholder:text-marian-300 focus:border-marian-500 focus:ring-marian-500"
+                          placeholder="Mis. Inisiasi eksplan anggrek untuk praktikum Kultur Jaringan Tanaman"></textarea>
+                            </fieldset>
+
+            
+            <fieldset class="border-t border-marian-100 pt-6">
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">5</span> Syarat Peminjaman
+                </legend>
+                
+                <div x-data="{ buka: false }" class="mt-4 rounded-2xl bg-marian-50 p-4 ring-1 ring-marian-100">
+                    <div class="whitespace-pre-line text-sm leading-relaxed text-marian-800" :class="buka || 'line-clamp-3'">1. Alat hanya digunakan untuk kegiatan akademik di lingkungan Laboratorium Kultur Jaringan.
+2. Peminjam wajib menunjukkan kartu identitas asli saat pengambilan.
+3. Alat dikembalikan paling lambat pada tanggal rencana kembali dalam kondisi bersih dan lengkap.
+4. Kerusakan atau kehilangan alat menjadi tanggung jawab peminjam dan wajib dilaporkan kepada petugas.
+5. Keterlambatan pengembalian menyebabkan penangguhan pengajuan peminjaman berikutnya.</div>
+                    <button type="button" @click="buka = ! buka" :aria-expanded="buka"
+                            class="mt-2 text-sm font-bold text-marian-800 hover:underline"
+                            x-text="buka ? 'Tutup' : 'Baca selengkapnya'">Baca selengkapnya</button>
+                </div>
+                <label class="mt-3 flex items-start gap-3 text-sm font-semibold text-marian-900">
+                    <input type="checkbox" name="setuju_syarat" value="1" required                            class="mt-0.5 h-5 w-5 shrink-0 rounded border-marian-300 text-marian-800 focus:ring-marian-500">
+                    Saya menyetujui syarat peminjaman dan bertanggung jawab atas barang yang dipinjam
+                </label>
+                            </fieldset>
+
+            
+            <fieldset class="border-t border-marian-100 pt-6" x-data="{ namaFile: '' }">
+                <legend class="flex items-center gap-3 text-base font-extrabold text-marian-900">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-marian-800 text-sm text-white">6</span> Surat Peminjaman *
+                </legend>
+                <label for="surat_peminjaman"
+                       class="mt-4 flex cursor-pointer items-center gap-4 rounded-3xl border-2 border-dashed border-marian-200 bg-marian-50/60 p-5 transition hover:border-marian-400 hover:bg-marian-50"
+                       :class="namaFile && '!border-marian-500 !bg-marian-50'">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-marian-700 shadow-sm">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4 4 0 0 1 0 9" /><path d="M12 12v8M9 15l3-3 3 3" /></svg>
+                    </span>
+                    <span class="min-w-0">
+                        <span class="block truncate font-bold text-marian-900" x-text="namaFile || 'Pilih file surat'">Pilih file surat</span>
+                        <span class="block text-sm text-marian-600" x-text="namaFile ? 'Klik untuk mengganti file' : 'PDF, DOC, atau DOCX · maksimal 4 MB'">PDF, DOC, atau DOCX · maksimal 4 MB</span>
+                    </span>
+                </label>
+                <input id="surat_peminjaman" type="file" name="surat_peminjaman" accept=".pdf,.doc,.docx" required class="sr-only"
+                       @change="namaFile = $event.target.files[0]?.name || ''">
+                                <p class="mt-2 text-xs text-marian-500">Belum punya surat? <a href="#demo" class="font-semibold text-marian-800 underline">Unduh template surat</a>, isi, tanda tangani, lalu unggah di sini.</p>
+            </fieldset>
+
+            <div class="flex flex-wrap items-center gap-3 border-t border-marian-100 pt-6">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-marian-900 to-marian-700 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:from-marian-950 hover:to-marian-800 focus:outline-none focus:ring-2 focus:ring-marian-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 px-7 py-3">
+    Kirim Ajuan
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+</button>
+                <a href="index.html" class="text-sm font-semibold text-marian-600 hover:text-marian-900">Batal</a>
+            </div>
+        </form>
+
+        
+        <aside class="lg:sticky lg:top-28">
+            <div class="rounded-5xl bg-gradient-to-br from-marian-900 to-marian-600 p-6 text-white shadow-lembut">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-marian-100">Ringkasan</h2>
+                <dl class="mt-4 space-y-3 text-sm">
+                    <div class="flex justify-between gap-3"><dt class="text-marian-200">Lama pinjam</dt><dd class="font-bold" x-text="lama() !== null ? lama() + ' hari' : '—'"></dd></div>
+                    <div class="flex justify-between gap-3">
+                        <dt class="text-marian-200">Total unit</dt>
+                        <dd class="font-bold" :class="total() > maksUnit && 'rounded-full bg-white px-2 text-red-600'" x-text="total() + ' / ' + maksUnit"></dd>
+                    </div>
+                </dl>
+                <ul class="mt-4 space-y-1.5 border-t border-white/15 pt-4 text-sm">
+                    <template x-for="b in items.filter(b => b.barang_id)" :key="b.barang_id">
+                        <li class="flex justify-between gap-3"><span class="truncate" x-text="nama[b.barang_id]"></span><span class="font-bold" x-text="'×' + b.jumlah"></span></li>
+                    </template>
+                    <li x-show="!items.some(b => b.barang_id)" class="text-marian-200">Belum ada alat dipilih.</li>
+                </ul>
+                
+                <div class="mt-4 border-t border-white/15 pt-4 text-sm font-bold text-marian-100">Saat mengambil alat</div>
+                <ul class="mt-2 list-inside list-disc space-y-1 text-xs text-marian-100">
+                    <li>Tunjukkan QR kode peminjaman (layar atau email).</li>
+                    <li>Bawa kartu identitas asli (KTM/KTP).</li>
+                    <li>Alat dipakai di lingkungan laboratorium.</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Komponen Alpine untuk baris alat dinamis + cek sisa unit ke server
+        function formAjuan(items, mulai, selesai, maksUnit, nama) {
+            return {
+                items, mulai, selesai, maksUnit, nama, stok: {},
+                tambah() { this.items.push({ barang_id: '', jumlah: 1 }); },
+                hapus(i) { this.items.splice(i, 1); this.cekStok(); },
+                total() { return this.items.reduce((t, b) => t + (parseInt(b.jumlah) || 0), 0); },
+                lama() {
+                    if (!this.mulai || !this.selesai) return null;
+                    const hari = (new Date(this.selesai) - new Date(this.mulai)) / 86400000;
+                    return hari >= 0 ? hari : null;
+                },
+                async cekStok() {
+                    const ids = this.items.map(b => b.barang_id).filter(Boolean);
+                    if (!ids.length || !this.mulai || !this.selesai || this.selesai < this.mulai) { this.stok = {}; return; }
+                    const params = new URLSearchParams({ mulai: this.mulai, selesai: this.selesai });
+                    ids.forEach(id => params.append('barang[]', id));
+                    try {
+                        const res = await fetch(`ketersediaan.json?${params}`, { headers: { Accept: 'application/json' } });
+                        if (res.ok) this.stok = await res.json();
+                    } catch (e) { /* abaikan; server tetap memvalidasi saat kirim */ }
+                },
+            };
+        }
+    </script>
+            </main>
+
+            
+            <footer class="mt-10 rounded-t-5xl bg-gradient-to-br from-marian-950 via-marian-900 to-marian-700 text-marian-100">
+                <div class="mx-auto grid max-w-7xl gap-8 px-6 py-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain bg-white/90 p-0.5">
+                            <span class="text-base font-extrabold text-white">Peminjaman Alat</span>
+                        </div>
+                        <p class="mt-3 text-sm leading-relaxed text-marian-200">Laboratorium Kultur Jaringan Sekolah Vokasi IPB University</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Lokasi & Layanan</div>
+                        <p class="mt-2 text-marian-200">Sekolah Vokasi IPB University, Jl. Kumbang No. 14, Bogor</p>
+                        <p class="mt-1 text-marian-200">Senin-Jumat, 08.00-15.00 WIB</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Tautan</div>
+                        <ul class="mt-2 space-y-1.5">
+                                                            <li><a href="index.html" class="text-marian-200 hover:text-white">Katalog Alat</a></li>
+                                                            <li><a href="jadwal.html" class="text-marian-200 hover:text-white">Jadwal Alat</a></li>
+                                                            <li><a href="ajuan.html" class="text-marian-200 hover:text-white">Ajukan Peminjaman</a></li>
+                                                            <li><a href="cek-status.html" class="text-marian-200 hover:text-white">Cek Status</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 px-6 py-4 text-center text-xs text-marian-300">
+                    Peminjam tidak perlu login — ajukan, lalu cek status dengan kode peminjaman dan NIM.
+                </div>
+            </footer>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="aktif">Pengunjung</a><a href="admin-dashboard.html" class="">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>

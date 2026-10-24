@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-gradient-to-b from-marian-50 via-white to-marian-50 font-sans text-marian-950 antialiased">
+        <div class="flex min-h-screen flex-col">
+            
+            <header x-data="{ open: false }" class="sticky top-0 z-40 px-3 pt-3 sm:px-6">
+                <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full bg-white/90 px-3 py-2 shadow-lembut ring-1 ring-marian-100 backdrop-blur sm:px-4">
+                    <a href="index.html" class="flex min-w-0 items-center gap-2.5">
+                        <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain">
+                        <span class="min-w-0 leading-tight">
+                            <span class="block truncate text-sm font-extrabold text-marian-900">Peminjaman Alat</span>
+                            <span class="block truncate text-[11px] font-medium text-marian-500">Lab Kultur Jaringan SV IPB</span>
+                        </span>
+                    </a>
+
+                    
+                    <div class="hidden items-center gap-1 md:flex">
+                                                                                <a href="index.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Katalog Alat
+                            </a>
+                                                                                <a href="jadwal.html"  aria-current="page"                                class="rounded-full px-4 py-2 text-sm font-semibold transition bg-marian-800 text-white shadow-sm">
+                                Jadwal Alat
+                            </a>
+                                                                                <a href="ajuan.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Ajukan Peminjaman
+                            </a>
+                                                                                <a href="cek-status.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Cek Status
+                            </a>
+                                            </div>
+
+                    <div class="hidden md:block">
+                        <a href="login.html"
+                           class="rounded-full border border-marian-200 px-4 py-2 text-sm font-semibold text-marian-800 transition hover:bg-marian-800 hover:text-white">
+                            Login Admin
+                        </a>
+                    </div>
+
+                    
+                    <button @click="open = ! open" class="flex h-10 w-10 items-center justify-center rounded-full text-marian-800 hover:bg-marian-50 md:hidden" :aria-expanded="open" aria-label="Buka menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path x-show="!open" d="M4 7h16M4 12h16M4 17h16" />
+                            <path x-show="open" d="M6 6l12 12M18 6L6 18" style="display: none;" />
+                        </svg>
+                    </button>
+                </nav>
+
+                
+                <div x-show="open" x-transition @click.outside="open = false" style="display: none;"
+                     class="mx-auto mt-2 max-w-7xl space-y-1 rounded-4xl bg-white p-3 shadow-lembut ring-1 ring-marian-100 md:hidden">
+                                            <a href="index.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Katalog Alat
+                        </a>
+                                            <a href="jadwal.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold bg-marian-800 text-white">
+                            Jadwal Alat
+                        </a>
+                                            <a href="ajuan.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Ajukan Peminjaman
+                        </a>
+                                            <a href="cek-status.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Cek Status
+                        </a>
+                                        <a href="login.html" class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-500 hover:bg-marian-50">
+                        Login Admin
+                    </a>
+                </div>
+            </header>
+
+            <main class="mx-auto w-full max-w-7xl flex-1 px-3 py-6 sm:px-6 lg:py-8">
+                
+                
+                <section class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-marian-950 via-marian-800 to-marian-500 px-6 py-8 text-white sm:px-10">
+        <div aria-hidden="true" class="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/10"></div>
+        <div class="relative max-w-2xl">
+            <span class="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ring-1 ring-white/25">Tanpa login</span>
+            <h1 class="mt-3 font-extrabold [font-size:clamp(1.6rem,3.4vw,2.5rem)]">Jadwal Pemakaian Alat</h1>
+            <p class="mt-2 text-sm text-marian-100">Lihat kapan alat sedang dipakai atau masih kosong, lalu pilih tanggal yang longgar untuk mengajukan peminjaman.</p>
+        </div>
+    </section>
+
+    <div class="mt-6">
+        <div class="inline-flex flex-wrap gap-1 rounded-3xl bg-white p-1.5 shadow-lembut ring-1 ring-marian-100">
+            <a href="#demo"
+           class="rounded-2xl px-4 py-2 text-sm font-bold transition text-marian-800 hover:bg-marian-50">Per Tanggal</a>
+            <a href="jadwal-per-alat.html"
+           class="rounded-2xl px-4 py-2 text-sm font-bold transition bg-marian-800 text-white">Per Alat</a>
+            <a href="jadwal-mingguan.html"
+           class="rounded-2xl px-4 py-2 text-sm font-bold transition text-marian-800 hover:bg-marian-50">Ringkasan Mingguan</a>
+    </div>
+
+
+<form method="GET" action="jadwal.html" class="mt-4 grid gap-3 rounded-3xl bg-white p-4 shadow-lembut ring-1 ring-marian-100 [grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr))]">
+    <input type="hidden" name="tab" value="alat">
+        <label class="text-sm font-semibold text-marian-900">Mulai tanggal
+        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" type="date" name="mulai" value="2026-10-24">
+    </label>
+    <label class="text-sm font-semibold text-marian-900">Kategori
+        <select  class="rounded-xl border-marian-200 bg-white text-marian-950 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" name="kategori_id">
+    <option value="">Semua kategori</option>
+                            <option value="01m5p72kq6y8v5xppt4tem7j06" >Alat Ukur &amp; Analisis</option>
+                            <option value="01m5p72kqc4c1tzptv3q24evh5" >Peralatan Inokulasi</option>
+                            <option value="01m5p72kqfm6mvwkmf8cp92t9e" >Persiapan Media &amp; Sterilisasi</option>
+                            <option value="01m5p72kqjgbc32faga7wme2zv" >Wadah &amp; Gelas Kultur</option>
+</select>
+    </label>
+    <label class="text-sm font-semibold text-marian-900">Lokasi
+        <select  class="rounded-xl border-marian-200 bg-white text-marian-950 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" name="lokasi_id">
+    <option value="">Semua lokasi</option>
+                            <option value="01m5p72kr892cyea93rt5cs69q" >Gudang Alat</option>
+                            <option value="01m5p72kr17j11enkcxfchxt2t" >Ruang Persiapan Media</option>
+                            <option value="01m5p72kr5qgyfhnexm94zvxee" >Ruang Tanam Aseptik</option>
+</select>
+    </label>
+    <label class="text-sm font-semibold text-marian-900 [grid-column:span_2/span_2] max-sm:col-span-1">Cari
+        <input  class="rounded-xl border-marian-200 bg-white text-marian-950 placeholder:text-marian-300 shadow-sm focus:border-marian-500 focus:ring-marian-500 mt-1 block w-full" name="q" placeholder="Kode unit, nama, atau kode alat…">
+    </label>
+    <div class="flex items-end gap-2">
+        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-marian-900 to-marian-700 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:from-marian-950 hover:to-marian-800 focus:outline-none focus:ring-2 focus:ring-marian-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1">
+    Tampilkan
+</button>
+    </div>
+</form>
+
+
+
+
+
+<div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center gap-2 text-sm">
+        <a href="#demo" class="rounded-full bg-white px-3 py-1.5 font-semibold text-marian-800 ring-1 ring-marian-200 hover:bg-marian-50">← 14 hari</a>
+        <a href="jadwal-per-alat.html" class="rounded-full bg-white px-3 py-1.5 font-semibold text-marian-800 ring-1 ring-marian-200 hover:bg-marian-50">Hari ini</a>
+        <a href="#demo" class="rounded-full bg-white px-3 py-1.5 font-semibold text-marian-800 ring-1 ring-marian-200 hover:bg-marian-50">14 hari →</a>
+        <span class="ms-1 text-marian-600">24 Okt – 06 Nov 2026</span>
+    </div>
+    <ul class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-marian-700">
+        <li class="flex items-center gap-1.5"><span class="h-3 w-3 rounded border border-marian-200 bg-white"></span> Tersedia</li>
+                <li class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-marian-300"></span> Dipesan</li>
+        <li class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-marian-800"></span> Dipinjam</li>
+        <li class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-red-600"></span> Terlambat</li>
+        <li class="flex items-center gap-1.5"><span class="h-3 w-3 rounded bg-marian-950/15"></span> Tidak tersedia</li>
+    </ul>
+</div>
+
+    
+    <div class="mt-4 overflow-x-auto rounded-3xl bg-white shadow-lembut ring-1 ring-marian-100">
+        <div class="min-w-max md:min-w-0">
+            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-100 text-xs">
+                <div class="sticky left-0 z-20 bg-white px-3 py-3 font-bold text-marian-700">Alat</div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center bg-marian-100 font-bold text-marian-900">
+                        <div class="uppercase">Sab</div>
+                        <div class="font-semibold">24 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Min</div>
+                        <div class="font-semibold">25 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Sen</div>
+                        <div class="font-semibold">26 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Sel</div>
+                        <div class="font-semibold">27 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Rab</div>
+                        <div class="font-semibold">28 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Kam</div>
+                        <div class="font-semibold">29 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Jum</div>
+                        <div class="font-semibold">30 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Sab</div>
+                        <div class="font-semibold">31 Okt</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Min</div>
+                        <div class="font-semibold">01 Nov</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Sen</div>
+                        <div class="font-semibold">02 Nov</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Sel</div>
+                        <div class="font-semibold">03 Nov</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Rab</div>
+                        <div class="font-semibold">04 Nov</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Kam</div>
+                        <div class="font-semibold">05 Nov</div>
+                    </div>
+                                    <div class="border-l border-marian-50 px-1 py-2 text-center text-marian-600">
+                        <div class="uppercase">Jum</div>
+                        <div class="font-semibold">06 Nov</div>
+                    </div>
+                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Bead Sterilizer</div>
+                        <div class="font-mono text-[11px] text-marian-500">STR</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 24 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 25 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 26 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 27 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 28 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 29 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 30 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 31 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 01 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 02 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 03 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 04 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 05 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bead Sterilizer mulai 06 Nov 2026">2 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Bunsen Burner</div>
+                        <div class="font-mono text-[11px] text-marian-500">BNS</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Bunsen Burner mulai 24 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Bunsen Burner mulai 25 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Bunsen Burner mulai 26 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 27 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 28 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 29 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 30 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 31 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 01 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 02 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 03 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 04 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 05 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Bunsen Burner mulai 06 Nov 2026">3 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Hot Plate Stirrer</div>
+                        <div class="font-mono text-[11px] text-marian-500">HPS</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 24 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 25 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 26 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 27 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 28 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 29 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 30 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 31 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 01 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 02 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 03 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 04 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 05 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Hot Plate Stirrer mulai 06 Nov 2026">2 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Mikropipet</div>
+                        <div class="font-mono text-[11px] text-marian-500">MPP</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 24 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 25 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 26 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 27 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 28 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 29 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 30 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 31 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 01 Nov 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 02 Nov 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 03 Nov 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 04 Nov 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 05 Nov 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikropipet mulai 06 Nov 2026">1 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Mikroskop Stereo</div>
+                        <div class="font-mono text-[11px] text-marian-500">MKR</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 24 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 25 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 26 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 27 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 28 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 29 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 30 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 31 Okt 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 01 Nov 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 02 Nov 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 03 Nov 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 04 Nov 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 05 Nov 2026">4 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Mikroskop Stereo mulai 06 Nov 2026">4 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Set Cawan Petri</div>
+                        <div class="font-mono text-[11px] text-marian-500">CTP</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-300 text-marian-950"
+                               title="Ajukan Set Cawan Petri mulai 24 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-300 text-marian-950"
+                               title="Ajukan Set Cawan Petri mulai 25 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-300 text-marian-950"
+                               title="Ajukan Set Cawan Petri mulai 26 Okt 2026">1 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 27 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 28 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 29 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 30 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 31 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 01 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 02 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 03 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 04 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 05 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Cawan Petri mulai 06 Nov 2026">3 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Set Erlenmeyer</div>
+                        <div class="font-mono text-[11px] text-marian-500">ERL</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 24 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 25 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 26 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 27 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 28 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 29 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 30 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 31 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 01 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 02 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 03 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 04 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 05 Nov 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Erlenmeyer mulai 06 Nov 2026">2 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Set Pinset &amp; Scalpel</div>
+                        <div class="font-mono text-[11px] text-marian-500">PSN</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 24 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 25 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 26 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 27 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 28 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 29 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 30 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 31 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 01 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 02 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 03 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 04 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 05 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Set Pinset &amp; Scalpel mulai 06 Nov 2026">3 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">Timbangan Analitik</div>
+                        <div class="font-mono text-[11px] text-marian-500">TBA</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Timbangan Analitik mulai 24 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Timbangan Analitik mulai 25 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan Timbangan Analitik mulai 26 Okt 2026">2 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 27 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 28 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 29 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 30 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 31 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 01 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 02 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 03 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 04 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 05 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-white text-marian-600"
+                               title="Ajukan Timbangan Analitik mulai 06 Nov 2026">3 sisa</a>
+                                                            </div>
+                            <div class="grid [grid-template-columns:8.5rem_repeat(14,4.25rem)] md:[grid-template-columns:12rem_repeat(14,minmax(4.5rem,1fr))] border-b border-marian-50 last:border-b-0">
+                    <div class="sticky left-0 z-20 bg-white px-3 py-2">
+                        <div class="truncate text-sm font-bold text-marian-900">pH Meter Digital</div>
+                        <div class="font-mono text-[11px] text-marian-500">PHM</div>
+                    </div>
+                                                                                                <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 24 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 25 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 26 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 27 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 28 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 29 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 30 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 31 Okt 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 01 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 02 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 03 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 04 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 05 Nov 2026">3 sisa</a>
+                                                                                                                        <a href="#demo"
+                               class="m-1 flex items-center justify-center rounded-xl text-xs font-bold ring-1 ring-marian-100 transition hover:ring-magenta bg-marian-100 text-marian-900"
+                               title="Ajukan pH Meter Digital mulai 06 Nov 2026">3 sisa</a>
+                                                            </div>
+                    </div>
+    </div>
+    <p class="mt-2 text-xs text-marian-500">Angka = sisa unit pada tanggal itu. Klik untuk mengajukan.</p>
+    </div>
+            </main>
+
+            
+            <footer class="mt-10 rounded-t-5xl bg-gradient-to-br from-marian-950 via-marian-900 to-marian-700 text-marian-100">
+                <div class="mx-auto grid max-w-7xl gap-8 px-6 py-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain bg-white/90 p-0.5">
+                            <span class="text-base font-extrabold text-white">Peminjaman Alat</span>
+                        </div>
+                        <p class="mt-3 text-sm leading-relaxed text-marian-200">Laboratorium Kultur Jaringan Sekolah Vokasi IPB University</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Lokasi & Layanan</div>
+                        <p class="mt-2 text-marian-200">Sekolah Vokasi IPB University, Jl. Kumbang No. 14, Bogor</p>
+                        <p class="mt-1 text-marian-200">Senin-Jumat, 08.00-15.00 WIB</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Tautan</div>
+                        <ul class="mt-2 space-y-1.5">
+                                                            <li><a href="index.html" class="text-marian-200 hover:text-white">Katalog Alat</a></li>
+                                                            <li><a href="jadwal.html" class="text-marian-200 hover:text-white">Jadwal Alat</a></li>
+                                                            <li><a href="ajuan.html" class="text-marian-200 hover:text-white">Ajukan Peminjaman</a></li>
+                                                            <li><a href="cek-status.html" class="text-marian-200 hover:text-white">Cek Status</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 px-6 py-4 text-center text-xs text-marian-300">
+                    Peminjam tidak perlu login — ajukan, lalu cek status dengan kode peminjaman dan NIM.
+                </div>
+            </footer>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="aktif">Pengunjung</a><a href="admin-dashboard.html" class="">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>

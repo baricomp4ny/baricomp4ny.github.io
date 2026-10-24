@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#263C92">
+
+<!-- Ikon tab: logo IPB -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<title>Demo · Peminjaman Alat Lab</title>
+
+<!-- Fonts (bunny.net: alternatif Google Fonts yang ramah privasi) -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800|figtree:400,500,600&display=swap" rel="stylesheet" />
+
+<!-- Scripts -->
+<link rel="preload" as="style" href="build/assets/app-0ff81cb9.css" /><link rel="preload" as="style" href="build/assets/app-f7f236c2.css" /><link rel="modulepreload" href="build/assets/app-5bb29f57.js" /><link rel="stylesheet" href="build/assets/app-0ff81cb9.css" /><link rel="stylesheet" href="build/assets/app-f7f236c2.css" /><script type="module" src="build/assets/app-5bb29f57.js"></script>    </head>
+    <body class="bg-gradient-to-b from-marian-50 via-white to-marian-50 font-sans text-marian-950 antialiased">
+        <div class="flex min-h-screen flex-col">
+            
+            <header x-data="{ open: false }" class="sticky top-0 z-40 px-3 pt-3 sm:px-6">
+                <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full bg-white/90 px-3 py-2 shadow-lembut ring-1 ring-marian-100 backdrop-blur sm:px-4">
+                    <a href="index.html" class="flex min-w-0 items-center gap-2.5">
+                        <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain">
+                        <span class="min-w-0 leading-tight">
+                            <span class="block truncate text-sm font-extrabold text-marian-900">Peminjaman Alat</span>
+                            <span class="block truncate text-[11px] font-medium text-marian-500">Lab Kultur Jaringan SV IPB</span>
+                        </span>
+                    </a>
+
+                    
+                    <div class="hidden items-center gap-1 md:flex">
+                                                                                <a href="index.html"  aria-current="page"                                class="rounded-full px-4 py-2 text-sm font-semibold transition bg-marian-800 text-white shadow-sm">
+                                Katalog Alat
+                            </a>
+                                                                                <a href="jadwal.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Jadwal Alat
+                            </a>
+                                                                                <a href="ajuan.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Ajukan Peminjaman
+                            </a>
+                                                                                <a href="cek-status.html"                                class="rounded-full px-4 py-2 text-sm font-semibold transition text-marian-700 hover:bg-marian-50">
+                                Cek Status
+                            </a>
+                                            </div>
+
+                    <div class="hidden md:block">
+                        <a href="login.html"
+                           class="rounded-full border border-marian-200 px-4 py-2 text-sm font-semibold text-marian-800 transition hover:bg-marian-800 hover:text-white">
+                            Login Admin
+                        </a>
+                    </div>
+
+                    
+                    <button @click="open = ! open" class="flex h-10 w-10 items-center justify-center rounded-full text-marian-800 hover:bg-marian-50 md:hidden" :aria-expanded="open" aria-label="Buka menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path x-show="!open" d="M4 7h16M4 12h16M4 17h16" />
+                            <path x-show="open" d="M6 6l12 12M18 6L6 18" style="display: none;" />
+                        </svg>
+                    </button>
+                </nav>
+
+                
+                <div x-show="open" x-transition @click.outside="open = false" style="display: none;"
+                     class="mx-auto mt-2 max-w-7xl space-y-1 rounded-4xl bg-white p-3 shadow-lembut ring-1 ring-marian-100 md:hidden">
+                                            <a href="index.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold bg-marian-800 text-white">
+                            Katalog Alat
+                        </a>
+                                            <a href="jadwal.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Jadwal Alat
+                        </a>
+                                            <a href="ajuan.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Ajukan Peminjaman
+                        </a>
+                                            <a href="cek-status.html"
+                           class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-800 hover:bg-marian-50">
+                            Cek Status
+                        </a>
+                                        <a href="login.html" class="block rounded-full px-4 py-2.5 text-sm font-semibold text-marian-500 hover:bg-marian-50">
+                        Login Admin
+                    </a>
+                </div>
+            </header>
+
+            <main class="mx-auto w-full max-w-7xl flex-1 px-3 py-6 sm:px-6 lg:py-8">
+                
+                
+                <a href="#demo" class="inline-flex items-center gap-1 text-sm font-semibold text-marian-700 hover:text-marian-900">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+        Katalog Alat
+    </a>
+
+    
+    <div class="mt-4 grid overflow-hidden rounded-5xl bg-white shadow-lembut ring-1 ring-marian-100 [grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))]">
+        <div class="relative bg-gradient-to-br from-marian-900 via-marian-700 to-marian-500 p-6">
+            <div aria-hidden="true" class="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10"></div>
+                            <img src="storage/barang/STR.jpg" alt="Bead Sterilizer" class="relative aspect-[4/3] h-full w-full rounded-4xl object-cover">
+                    </div>
+
+        <div class="flex flex-col p-6 sm:p-8">
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full bg-marian-50 px-3 py-1 text-xs font-semibold text-marian-700 ring-1 ring-marian-200">Persiapan Media &amp; Sterilisasi</span>
+                <span class="rounded-full bg-marian-50 px-3 py-1 font-mono text-xs font-semibold text-marian-700 ring-1 ring-marian-200">STR</span>
+            </div>
+            <h1 class="mt-3 font-extrabold text-marian-900 [font-size:clamp(1.6rem,3vw,2.4rem)]">Bead Sterilizer</h1>
+            <p class="mt-2 text-sm leading-relaxed text-marian-700">Sterilisator manik kaca (glass bead) untuk sterilisasi cepat pinset dan scalpel.</p>
+
+            <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-3 border-t border-marian-100 pt-5">
+                <div>
+                    <dt class="text-xs text-marian-600">Tersedia hari ini</dt>
+                    <dd class="mt-1 text-3xl font-extrabold text-marian-800">2<span class="text-base font-semibold text-marian-400"> / 2</span></dd>
+                </div>
+                <div>
+                    <dt class="text-xs text-marian-600">Lama pinjam maks.</dt>
+                    <dd class="mt-1 text-3xl font-extrabold text-marian-900">7<span class="text-base font-semibold text-marian-400"> hari</span></dd>
+                </div>
+            </dl>
+
+                            <p class="mt-4 text-sm text-marian-600"><span class="font-semibold text-marian-800">Lokasi:</span> Ruang Tanam Aseptik</p>
+            
+            <div class="mt-auto flex flex-wrap gap-3 pt-6">
+                <a href="ajuan-alat.html" class="inline-flex items-center gap-2 rounded-full bg-marian-800 px-6 py-3 text-sm font-bold text-white transition hover:bg-marian-900">
+                    Ajukan Peminjaman
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </a>
+                <a href="jadwal-alat.html" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-marian-800 ring-2 ring-marian-200 transition hover:bg-marian-50">
+                    Lihat Alat Ini dalam Matriks
+                </a>
+            </div>
+            <p class="mt-3 text-xs text-marian-500">Ketersediaan di tanggal lain dihitung otomatis saat Anda memilih tanggal di form ajuan.</p>
+        </div>
+    </div>
+
+            <section class="mt-12">
+            <h2 class="text-xl font-extrabold text-marian-900">Alat lain di Persiapan Media &amp; Sterilisasi</h2>
+            <div class="mt-5 grid gap-5 [grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))]">
+                                    <article class="group flex min-w-0 flex-col rounded-3xl bg-white p-2 lg:rounded-4xl lg:p-3 shadow-lembut ring-1 ring-marian-100 transition hover:-translate-y-1 hover:ring-2 hover:ring-magenta focus-within:ring-2 focus-within:ring-magenta active:ring-2 active:ring-magenta">
+    <a href="#demo" class="relative block overflow-hidden rounded-2xl bg-gradient-to-br lg:rounded-3xl from-marian-50 to-marian-100">
+                    <img src="storage/barang/HPS.jpg" alt="Hot Plate Stirrer" loading="lazy" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-105">
+        
+        
+            </a>
+
+    <div class="flex flex-1 flex-col px-1 pb-1 pt-3 lg:px-2 lg:pt-4">
+        <a href="#demo" class="text-sm font-bold leading-snug text-marian-900 hover:text-marian-700 lg:text-base">Hot Plate Stirrer</a>
+        <span class="mb-3 mt-0.5 line-clamp-1 text-[11px] text-marian-500 lg:mb-4 lg:text-xs">Persiapan Media &amp; Sterilisasi</span>
+
+        <div class="mt-auto flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 border-t border-marian-100 pt-2 lg:pt-3">
+            <span class="font-mono text-[11px] font-semibold text-marian-500 lg:text-xs">HPS</span>
+                            <span class="text-xs font-bold lg:text-sm text-marian-800">2 tersedia</span>
+                    </div>
+
+        <a href="#demo"
+           class="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-marian-900 to-marian-700 px-3 py-1.5 text-xs font-semibold lg:mt-3 lg:gap-2 lg:px-4 lg:py-2 lg:text-sm text-white transition hover:from-marian-950 hover:to-marian-800"
+           aria-label="Pinjam Hot Plate Stirrer">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+            Pinjam
+        </a>
+    </div>
+</article>
+                            </div>
+        </section>
+            </main>
+
+            
+            <footer class="mt-10 rounded-t-5xl bg-gradient-to-br from-marian-950 via-marian-900 to-marian-700 text-marian-100">
+                <div class="mx-auto grid max-w-7xl gap-8 px-6 py-10 [grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))]">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <img src="images/logo-ipb.png" alt="Logo IPB University" width="40" height="40"
+     class="h-10 w-10 shrink-0 rounded-full object-contain bg-white/90 p-0.5">
+                            <span class="text-base font-extrabold text-white">Peminjaman Alat</span>
+                        </div>
+                        <p class="mt-3 text-sm leading-relaxed text-marian-200">Laboratorium Kultur Jaringan Sekolah Vokasi IPB University</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Lokasi & Layanan</div>
+                        <p class="mt-2 text-marian-200">Sekolah Vokasi IPB University, Jl. Kumbang No. 14, Bogor</p>
+                        <p class="mt-1 text-marian-200">Senin-Jumat, 08.00-15.00 WIB</p>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-white">Tautan</div>
+                        <ul class="mt-2 space-y-1.5">
+                                                            <li><a href="index.html" class="text-marian-200 hover:text-white">Katalog Alat</a></li>
+                                                            <li><a href="jadwal.html" class="text-marian-200 hover:text-white">Jadwal Alat</a></li>
+                                                            <li><a href="ajuan.html" class="text-marian-200 hover:text-white">Ajukan Peminjaman</a></li>
+                                                            <li><a href="cek-status.html" class="text-marian-200 hover:text-white">Cek Status</a></li>
+                                                    </ul>
+                    </div>
+                </div>
+                <div class="border-t border-white/10 px-6 py-4 text-center text-xs text-marian-300">
+                    Peminjam tidak perlu login — ajukan, lalu cek status dengan kode peminjaman dan NIM.
+                </div>
+            </footer>
+        </div>
+    
+<style>
+.demo-pita{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;max-width:calc(100% - 24px);padding:7px 8px 7px 14px;border-radius:999px;background:#131E4A;color:#fff;font:600 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.6)}
+.demo-pita b{color:#FED80B;font-weight:800}
+.demo-pita a{color:#131E4A;background:#fff;border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700}
+.demo-pita a.aktif{background:#FED80B}
+.demo-pita a.gh{background:transparent;color:#BCC7EE;padding:6px 8px}
+.demo-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:9999;max-width:min(92vw,420px);padding:10px 14px;border-radius:14px;background:#fff;color:#131E4A;font:500 13px/1.4 "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 12px 30px -10px rgba(19,30,74,.45);border:1px solid #DDE3F6;opacity:0;transition:opacity .2s;pointer-events:none}
+.demo-toast.tampil{opacity:1}
+@media (max-width:480px){.demo-pita{bottom:8px;gap:4px;padding:5px 5px 5px 10px;font-size:11px;flex-wrap:nowrap}.demo-pita .ket,.demo-pita a.gh{display:none}.demo-pita a{padding:5px 9px}}
+@media print{.demo-pita,.demo-toast{display:none}}
+</style>
+<div class="demo-pita" role="note"><span><b>Demo SILVI</b><span class="ket"> · tampilan dengan data contoh</span></span>
+<a href="index.html" class="aktif">Pengunjung</a><a href="admin-dashboard.html" class="">Admin</a>
+<a class="gh" href="https://github.com/baricomp4ny/peminjaman-barang" target="_blank" rel="noopener">GitHub ↗</a></div>
+<div class="demo-toast" id="demo-toast" role="status"></div>
+<script>
+(function () {
+  var t = document.getElementById('demo-toast'), jeda;
+  function pesan(s) { t.textContent = s; t.classList.add('tampil'); clearTimeout(jeda); jeda = setTimeout(function () { t.classList.remove('tampil'); }, 2600); }
+  // Tautan ke halaman yang tidak ada di demo
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#demo"]');
+    if (a) { e.preventDefault(); pesan('Halaman ini tidak tersedia di demo tampilan.'); }
+  }, true);
+  // Isi otomatis kolom form demo (login & cek status) dengan data contoh
+  document.querySelectorAll('form[data-demo-isi]').forEach(function (f) {
+    var isi = JSON.parse(f.getAttribute('data-demo-isi'));
+    Object.keys(isi).forEach(function (n) { var el = f.querySelector('[name="' + n + '"]'); if (el) el.value = isi[n]; });
+  });
+  // Form menyimpan data dimatikan; form yang diberi data-demo-ok tetap jalan (login, cek status)
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (f.hasAttribute('data-demo-ok')) { e.preventDefault(); location.href = f.getAttribute('data-demo-ok'); return; }
+    e.preventDefault(); pesan('Demo tampilan: data tidak disimpan. Coba aplikasinya dari kode di GitHub.');
+  }, true);
+})();
+</script>
+
+</body>
+</html>
