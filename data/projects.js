@@ -75,12 +75,16 @@ window.PROJECTS = [
     "title": "SILVI",
     "type": "Sistem Informasi Peminjaman Alat",
     "period": "2026",
-    "description": "Sistem peminjaman alat Laboratorium Kultur Jaringan Sekolah Vokasi IPB berbasis QR Code. Isinya katalog alat dengan cek ketersediaan per tanggal, ajuan online tanpa login, verifikasi petugas, serah-terima dan pengembalian lewat scan barcode, pengingat keterlambatan otomatis, serta cetak bukti peminjaman dan laporan PDF/Excel.",
-    "role": "",
+    "description": "Sistem peminjaman alat Laboratorium Kultur Jaringan Sekolah Vokasi IPB berbasis QR Code. Peminjam mengajukan tanpa login lewat katalog dengan cek ketersediaan per tanggal dan matriks jadwal alat; petugas memverifikasi, mencatat serah-terima dan pengembalian lewat scan QR (kamera atau scanner USB), mengelola kondisi dan riwayat perbaikan unit, mengingatkan peminjam terlambat via email dan WhatsApp, serta mengunduh laporan PDF/Excel dari dashboard bergrafik.",
+    "role": "analisis kebutuhan, desain UI, pengembangan full-stack, perancangan database, dan pengujian",
     "tech": [
-      "Laravel"
+      "Laravel",
+      "MySQL",
+      "Tailwind CSS",
+      "Alpine.js",
+      "QR Code"
     ],
-    "link": "",
+    "link": "https://github.com/baricomp4ny/peminjaman-barang",
     "status": "",
     "image": "assets/projects/silvi.svg"
   }
