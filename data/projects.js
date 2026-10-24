@@ -11,7 +11,7 @@ window.PROJECTS = [
       "MySQL",
       "CRUD"
     ],
-    "link": "",
+    "link": "https://baricomp4ny.github.io/EDU-HARMONY/",
     "status": "",
     "image": "assets/projects/edu-harmony.svg"
   },
