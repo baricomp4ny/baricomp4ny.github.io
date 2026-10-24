@@ -8,18 +8,49 @@
      browser menyimpan file selama 10 menit, sehingga tanpa ini perubahan dari admin baru
      terlihat belakangan. Kartu harus sudah ada sebelum efek scroll & cahaya kursor dipasang. */
   var root = document.documentElement;
-  loadProjects(function () {
+  loadData(["data/profile.js", "data/projects.js"], function () {
+    renderProfile();
     renderProjects();
     bindCardGlow();
     if (root.classList.contains("motion")) initScrollEffects();
   });
 
-  function loadProjects(done) {
-    if (window.PROJECTS) return done();
-    var s = document.createElement("script");
-    s.src = "data/projects.js?v=" + Date.now();
-    s.onload = s.onerror = done;
-    document.head.appendChild(s);
+  // Muat beberapa file data sekaligus; done() dipanggil setelah semuanya selesai (berhasil/gagal)
+  function loadData(files, done) {
+    var left = files.length;
+    var stamp = Date.now();
+    files.forEach(function (file) {
+      var s = document.createElement("script");
+      s.src = file + "?v=" + stamp;
+      s.onload = s.onerror = function () { if (--left === 0) done(); };
+      document.head.appendChild(s);
+    });
+  }
+
+  /* Tagline + statistik di hero dari data/profile.js. HTML bawaan tetap jadi cadangan
+     jika file tidak terbaca. (Di layar bergerak, bagian ini baru muncul ±0,6 detik
+     setelah halaman dimuat, jadi pergantian teks tidak terlihat.) */
+  function renderProfile() {
+    var p = window.PROFILE;
+    if (!p) return;
+    var tagline = document.querySelector(".hero__tagline");
+    if (tagline && p.tagline) tagline.textContent = p.tagline;
+
+    var list = document.querySelector(".stats");
+    var stats = Array.isArray(p.stats) ? p.stats.filter(function (s) { return s && s.value; }).slice(0, 3) : [];
+    if (!list || !stats.length) return;
+    list.textContent = "";
+    stats.forEach(function (s) {
+      var li = el("li");
+      li.appendChild(el("span", "stats__num", s.value));
+      var label = el("span", "stats__label", s.label || "");
+      if (s.note) {
+        label.appendChild(document.createTextNode(" "));
+        label.appendChild(el("span", "stats__sub", s.note));
+      }
+      li.appendChild(label);
+      list.appendChild(li);
+    });
   }
 
   function renderProjects() {

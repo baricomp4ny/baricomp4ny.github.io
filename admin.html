@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="admin.css">
+  <script src="data/profile.js" defer></script>
   <script src="data/projects.js" defer></script>
   <script src="admin.js" defer></script>
 </head>
@@ -67,20 +68,53 @@
       </details>
     </section>
 
-    <!-- 2. DAFTAR PROYEK -->
+    <!-- 2. PROFIL (tagline + statistik di bagian atas website) -->
+    <section class="panel" aria-labelledby="profile-title">
+      <div class="panel__head">
+        <h2 id="profile-title"><span class="step">2</span>Profil (bagian atas)</h2>
+      </div>
+      <p class="hint">Kalimat tagline dan 3 angka statistik di sebelah kanan foto (di HP: di bawah tombol).</p>
+
+      <form id="profile-form" class="form-grid" novalidate>
+        <label class="span-full">Tagline *
+          <textarea name="tagline" rows="2" maxlength="160" required></textarea>
+        </label>
+        <fieldset class="stat-field">
+          <legend>Statistik 1</legend>
+          <label>Angka * <input name="value0" maxlength="8" required></label>
+          <label>Keterangan * <input name="label0" maxlength="40" required></label>
+          <label>Catatan kecil <small>(opsional)</small> <input name="note0" maxlength="40"></label>
+        </fieldset>
+        <fieldset class="stat-field">
+          <legend>Statistik 2</legend>
+          <label>Angka * <input name="value1" maxlength="8" required></label>
+          <label>Keterangan * <input name="label1" maxlength="40" required></label>
+          <label>Catatan kecil <small>(opsional)</small> <input name="note1" maxlength="40"></label>
+        </fieldset>
+        <fieldset class="stat-field">
+          <legend>Statistik 3</legend>
+          <label>Angka * <input name="value2" maxlength="8" required></label>
+          <label>Keterangan * <input name="label2" maxlength="40" required></label>
+          <label>Catatan kecil <small>(opsional)</small> <input name="note2" maxlength="40"></label>
+        </fieldset>
+      </form>
+      <p class="status" id="profile-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- 3. DAFTAR PROYEK -->
     <section class="panel" aria-labelledby="list-title">
       <div class="panel__head">
-        <h2 id="list-title"><span class="step">2</span>Daftar proyek</h2>
+        <h2 id="list-title"><span class="step">3</span>Daftar proyek</h2>
         <button class="btn btn--primary btn--sm" type="button" id="add">+ Tambah proyek</button>
       </div>
       <p class="hint">Urutan di sini = urutan kartu di website (01, 02, …). Gunakan ↑ ↓ untuk mengatur.</p>
       <ol class="list" id="list"></ol>
     </section>
 
-    <!-- 3. CV -->
+    <!-- 4. CV -->
     <section class="panel" aria-labelledby="cv-title">
       <div class="panel__head">
-        <h2 id="cv-title"><span class="step">3</span>CV</h2>
+        <h2 id="cv-title"><span class="step">4</span>CV</h2>
         <a class="btn btn--ghost btn--sm" href="assets/cv.pdf" target="_blank" rel="noopener">Lihat CV saat ini ↗</a>
       </div>
       <p class="hint">File ini dipakai tombol <b>Download CV</b> di website (<code>assets/cv.pdf</code>). Pilih PDF baru untuk menggantinya, lalu Publikasikan.</p>
@@ -94,10 +128,10 @@
       <p class="status" id="cv-status" role="status" aria-live="polite"></p>
     </section>
 
-    <!-- 4. PUBLIKASI -->
+    <!-- 5. PUBLIKASI -->
     <section class="panel" aria-labelledby="pub-title">
       <div class="panel__head">
-        <h2 id="pub-title"><span class="step">4</span>Publikasikan</h2>
+        <h2 id="pub-title"><span class="step">5</span>Publikasikan</h2>
         <span class="badge" id="dirty-badge">Tidak ada perubahan</span>
       </div>
       <p class="hint">Semua perubahan di atas belum tersimpan sampai Anda menekan <b>Publikasikan</b>.</p>

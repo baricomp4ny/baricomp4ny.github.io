@@ -1,11 +1,12 @@
-/* Admin Proyek Pilihan
-   - Mengelola isi data/projects.js (urutan, teks, gambar).
+/* Admin Portofolio
+   - Mengelola data/profile.js (tagline + statistik), data/projects.js (urutan, teks, gambar) dan CV.
    - Publikasi: satu commit ke GitHub lewat API (Git Data API), lalu GitHub Pages membangun ulang website.
    - Token GitHub hanya disimpan di browser ini dan hanya dikirim ke api.github.com. */
 (() => {
   "use strict";
 
   const DATA_PATH = "data/projects.js";
+  const PROFILE_PATH = "data/profile.js";
   const CV_PATH = "assets/cv.pdf";
   const MAX_CV_SIZE = 10 * 1024 * 1024;
   const IMAGE_DIR = "assets/projects/";
@@ -24,8 +25,12 @@
     editing: -1,           // indeks yang sedang diedit (-1 = baru)
     draftImage: undefined, // undefined = tidak berubah, null = dihapus, { path, blob, url } = baru
     cv: null,              // { blob, name } = CV baru yang belum dipublikasikan
+    profile: normalizeProfile(window.PROFILE),
+    profileBase: null,     // profil terakhir yang tersimpan
+    profileSha: null,      // sha data/profile.js di GitHub saat dimuat
   };
   state.baseline = clone(state.projects);
+  state.profileBase = clone(state.profile);
 
   /* ---------- Penyimpanan pengaturan (aman jika storage diblokir) ---------- */
   function readStore() {
@@ -82,13 +87,37 @@
     return normalizeList(JSON.parse(m[1]));
   }
 
+  // Profil: tagline + tepat 3 statistik { value, label, note }
+  function normalizeProfile(p) {
+    p = p || {};
+    const str = (v) => (typeof v === "string" ? v.trim() : typeof v === "number" ? String(v) : "");
+    const stats = Array.isArray(p.stats) ? p.stats : [];
+    return {
+      tagline: str(p.tagline),
+      stats: [0, 1, 2].map((i) => {
+        const s = stats[i] || {};
+        return { value: str(s.value), label: str(s.label), note: str(s.note) };
+      }),
+    };
+  }
+  function serializeProfile(profile) {
+    return '/* Data "Profil" (tagline + statistik di bagian atas). Dikelola lewat admin.html — boleh diedit manual, jaga format JSON-nya. */\n' +
+      "window.PROFILE = " + JSON.stringify(profile, null, 2) + ";\n";
+  }
+  function parseProfile(text) {
+    const m = text.match(/window\.PROFILE\s*=\s*([\s\S]*?);?\s*$/);
+    if (!m) throw new Error("Format data/profile.js tidak dikenali.");
+    return normalizeProfile(JSON.parse(m[1]));
+  }
+  const profileDirty = () => JSON.stringify(state.profile) !== JSON.stringify(state.profileBase);
+
   // Gambar baru yang dipakai proyek dan belum diunggah ke GitHub
   const pendingImages = () => [...new Set(state.projects.map((p) => p.image))].filter((path) => {
     const img = state.images.get(path);
     return img && !img.published;
   });
   const isDirty = () => JSON.stringify(state.projects) !== JSON.stringify(state.baseline) ||
-    pendingImages().length > 0 || !!state.cv;
+    pendingImages().length > 0 || !!state.cv || profileDirty();
 
   /* ---------- Tampilan daftar ---------- */
   function previewSrc(path) {
@@ -199,6 +228,60 @@
     el.className = "status" + (kind ? " is-" + kind : "");
     el.dataset.kind = kind || "";
   }
+
+  /* ---------- Profil ---------- */
+  const profileForm = $("#profile-form");
+
+  function fillProfileForm() {
+    profileForm.tagline.value = state.profile.tagline;
+    state.profile.stats.forEach((s, i) => {
+      profileForm["value" + i].value = s.value;
+      profileForm["label" + i].value = s.label;
+      profileForm["note" + i].value = s.note;
+    });
+    profileForm.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+    showProfileState();
+  }
+
+  function readProfileForm() {
+    return normalizeProfile({
+      tagline: profileForm.tagline.value,
+      stats: [0, 1, 2].map((i) => ({
+        value: profileForm["value" + i].value,
+        label: profileForm["label" + i].value,
+        note: profileForm["note" + i].value,
+      })),
+    });
+  }
+
+  // Kolom wajib: tagline, serta angka & keterangan tiap statistik
+  function profileErrors(mark) {
+    const p = state.profile;
+    const errs = [];
+    const check = (field, bad, msg) => {
+      if (mark) { if (bad) field.setAttribute("aria-invalid", "true"); else field.removeAttribute("aria-invalid"); }
+      if (bad && !errs.includes(msg)) errs.push(msg);
+    };
+    check(profileForm.tagline, !p.tagline, "Tagline wajib diisi.");
+    p.stats.forEach((s, i) => {
+      check(profileForm["value" + i], !s.value, "Setiap statistik wajib punya angka dan keterangan.");
+      check(profileForm["label" + i], !s.label, "Setiap statistik wajib punya angka dan keterangan.");
+    });
+    return errs;
+  }
+
+  function showProfileState() {
+    const errs = profileErrors(true);
+    if (errs.length) setStatus("#profile-status", errs.join(" "), "err");
+    else setStatus("#profile-status", profileDirty() ? "Profil diubah — belum dipublikasikan." : "", profileDirty() ? "warn" : "");
+  }
+
+  profileForm.addEventListener("input", () => {
+    state.profile = readProfileForm();
+    showProfileState();
+    updateDirty();
+  });
+  profileForm.addEventListener("submit", (e) => e.preventDefault());
 
   /* ---------- Aksi daftar ---------- */
   function move(i, dir) {
@@ -421,6 +504,13 @@
     return { sha: file.sha, list: parse(b64ToText(file.content)) };
   }
 
+  async function fetchRemoteProfile() {
+    const ref = encodeURIComponent(state.conn.branch);
+    const file = await gh(`/contents/${PROFILE_PATH}?ref=${ref}`, { allow404: true });
+    if (!file) return { sha: null, profile: null };
+    return { sha: file.sha, profile: parseProfile(b64ToText(file.content)) };
+  }
+
   /* ---------- Koneksi ---------- */
   const connForm = $("#conn-form");
 
@@ -447,6 +537,13 @@
         state.projects = remote.list;
         state.baseline = clone(remote.list);
       }
+      const remoteProfile = await fetchRemoteProfile();
+      state.profileSha = remoteProfile.sha;
+      if (remoteProfile.profile) {
+        state.profile = remoteProfile.profile;
+        state.profileBase = clone(remoteProfile.profile);
+      }
+      fillProfileForm();
       dropUnusedLocalImages();
       writeStore(conn, connForm.remember.checked);
       setConnected(true);
@@ -466,6 +563,7 @@
   $("#disconnect").addEventListener("click", () => {
     state.conn = null;
     state.remoteSha = null;
+    state.profileSha = null;
     clearToken();
     connForm.token.value = "";
     connForm.remember.checked = false;
@@ -488,6 +586,7 @@
     if (!state.conn || !isDirty()) return;
     const invalid = state.projects.find((p) => !p.title || !p.description);
     if (invalid) { setStatus("#pub-status", "Ada proyek tanpa nama/deskripsi. Lengkapi dulu.", "err"); return; }
+    if (profileErrors(true).length) { setStatus("#pub-status", "Bagian Profil (langkah 2) belum lengkap. Lengkapi dulu.", "err"); return; }
 
     const btn = $("#publish");
     btn.disabled = true;
@@ -495,7 +594,8 @@
       const branch = encodeURIComponent(state.conn.branch);
       setStatus("#pub-status", "Memeriksa data terbaru di GitHub…");
       const remote = await fetchRemoteData();
-      if (remote.sha !== state.remoteSha) {
+      const remoteProfile = await fetchRemoteProfile();
+      if (remote.sha !== state.remoteSha || remoteProfile.sha !== state.profileSha) {
         throw new Error("Data di GitHub berubah sejak dimuat (mungkin diedit dari tempat lain). Klik “Hubungkan ulang” untuk memuat versi terbaru.");
       }
 
@@ -521,6 +621,10 @@
       }
 
       tree.push({ path: DATA_PATH, mode: "100644", type: "blob", content: serialize(state.projects) });
+      const profileChanged = profileDirty() || !state.profileSha;
+      if (profileChanged) {
+        tree.push({ path: PROFILE_PATH, mode: "100644", type: "blob", content: serializeProfile(state.profile) });
+      }
 
       // Gambar di folder proyek yang tidak dipakai lagi ikut dihapus dari repo
       const used = new Set(state.projects.map((p) => p.image));
@@ -535,13 +639,16 @@
       const newTree = await gh("/git/trees", { method: "POST", body: { base_tree: baseCommit.tree.sha, tree } });
       const commit = await gh("/git/commits", {
         method: "POST",
-        body: { message: "Perbarui Proyek Pilihan (via admin)", tree: newTree.sha, parents: [baseSha] },
+        body: { message: "Perbarui konten portofolio (via admin)", tree: newTree.sha, parents: [baseSha] },
       });
       await gh(`/git/refs/heads/${branch}`, { method: "PATCH", body: { sha: commit.sha } });
 
       const after = await fetchRemoteData();
       state.remoteSha = after.sha;
       state.baseline = clone(state.projects);
+      if (profileChanged) state.profileSha = (await fetchRemoteProfile()).sha;
+      state.profileBase = clone(state.profile);
+      showProfileState();
       // Gambar tetap disimpan lokal untuk pratinjau sampai GitHub Pages selesai membangun ulang,
       // tapi ditandai sudah terunggah agar tidak dihitung sebagai perubahan lagi.
       uploads.forEach((path) => { state.images.get(path).published = true; });
@@ -572,7 +679,7 @@
       if (String.fromCharCode(...head) !== "%PDF-") throw new Error("File ini bukan PDF yang valid.");
       state.cv = { blob: file, name: file.name };
       $("#cv-cancel").hidden = false;
-      setStatus("#cv-status", `Siap diganti: ${file.name} (${Math.round(file.size / 1024)} KB). Klik Publikasikan di langkah 4.`, "ok");
+      setStatus("#cv-status", `Siap diganti: ${file.name} (${Math.round(file.size / 1024)} KB). Klik Publikasikan di langkah 5.`, "ok");
     } catch (err) {
       setStatus("#cv-status", err.message, "err");
     }
@@ -594,6 +701,8 @@
   $("#discard").addEventListener("click", () => {
     if (!confirm("Batalkan semua perubahan yang belum dipublikasikan?")) return;
     state.projects = clone(state.baseline);
+    state.profile = clone(state.profileBase);
+    fillProfileForm();
     clearCv();
     setStatus("#cv-status", "");
     dropUnusedLocalImages();
@@ -603,10 +712,13 @@
 
   $("#download").addEventListener("click", () => {
     saveFile(new Blob([serialize(state.projects)], { type: "text/javascript" }), "projects.js");
+    const withProfile = profileDirty();
+    if (withProfile) saveFile(new Blob([serializeProfile(state.profile)], { type: "text/javascript" }), "profile.js");
     const imgs = pendingImages();
     imgs.forEach((path) => saveFile(state.images.get(path).blob, path.split("/").pop()));
     setStatus("#pub-status",
-      `Diunduh: projects.js${imgs.length ? ` dan ${imgs.length} gambar` : ""}. Unggah manual ke GitHub: projects.js → folder data/` +
+      `Diunduh: projects.js${withProfile ? ", profile.js" : ""}${imgs.length ? ` dan ${imgs.length} gambar` : ""}. ` +
+      `Unggah manual ke GitHub: ${withProfile ? "projects.js & profile.js" : "projects.js"} → folder data/` +
       (imgs.length ? ", gambar → folder assets/projects/." : ".") +
       (state.cv ? " Untuk CV: unggah file PDF Anda ke folder assets/ dengan nama cv.pdf." : ""), "ok");
   });
@@ -634,5 +746,6 @@
     connForm.requestSubmit();
   }
   if (!window.PROJECTS) setStatus("#conn-status", "data/projects.js tidak terbaca. Hubungkan GitHub untuk memuat data.", "err");
+  fillProfileForm();
   renderList();
 })();

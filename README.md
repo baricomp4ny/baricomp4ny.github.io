@@ -14,6 +14,7 @@ Portofolio/
 ├── script.js           # kartu proyek, foto, cek CV, tombol Salin, efek scroll
 ├── admin.html/.css/.js # halaman admin untuk mengelola Proyek Pilihan
 ├── data/
+│   ├── profile.js      # tagline + 3 statistik di bagian atas (diubah lewat admin)
 │   └── projects.js     # data Proyek Pilihan (diubah lewat admin)
 ├── data.txt            # sumber data isi website
 ├── referensi.png       # acuan gaya visual
@@ -33,11 +34,13 @@ dan mengurutkan proyek, termasuk mengunggah gambar.
    "Cara membuat token": *Fine-grained token*, akses hanya ke repo
    `baricomp4ny.github.io`, izin **Contents: Read and write**.
 2. **Hubungkan.** Tempel token dan klik *Hubungkan*. Data terbaru dimuat dari GitHub.
-3. **Ubah proyek.** Kosongkan kolom Link agar kartu menampilkan "Demo segera".
+3. **Ubah profil (opsional).** Di bagian *2. Profil (bagian atas)*, ubah tagline dan
+   3 angka statistik di samping foto (disimpan di `data/profile.js`).
+4. **Ubah proyek.** Kosongkan kolom Link agar kartu menampilkan "Demo segera".
    Gambar otomatis diperkecil (maks. lebar 1280px) dan dikompres ke WebP.
-4. **Ganti CV (opsional).** Di bagian *3. CV*, pilih file PDF baru (maks. 10 MB).
+5. **Ganti CV (opsional).** Di bagian *4. CV*, pilih file PDF baru (maks. 10 MB).
    File akan menggantikan `assets/cv.pdf` yang dipakai tombol "Download CV".
-5. **Publikasikan.** Semua perubahan dikirim sebagai satu commit. Website
+6. **Publikasikan.** Semua perubahan dikirim sebagai satu commit. Website
    diperbarui dalam ± 1–2 menit. Gambar proyek yang dihapus ikut dihapus dari repo.
 
 Keamanan:
