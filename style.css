@@ -504,7 +504,7 @@ button { font: inherit; color: inherit; }
   line-height: 1;
   text-transform: uppercase;
 }
-.project__desc { color: var(--muted); font-size: 0.95rem; }
+.project__desc { color: var(--muted); font-size: 0.95rem; text-align: justify; }
 .project__role { color: var(--muted); font-size: 0.9rem; }
 .project__role strong { color: var(--text); }
 .project__foot {
